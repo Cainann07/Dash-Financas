@@ -1,1 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
+html,
+body {
+    margin: 0;
+
+}
+
+h1,
+h2,
+h3,
+.p-card-title {
+    font-family: 'Space Grotesk', sans-serif;
+    letter-spacing: -0.5px;
+}
+
+
+body,
+html,
+input,
+button,
+.p-component {
+    font-family: 'Manrope', sans-serif;
+}

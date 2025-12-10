@@ -1,83 +1,128 @@
-header{
-    display: flex;
+ 
+.tela-dividida {
+    display: flex;        
+    height: 100vh;        
+    width: 100%;
+    overflow: hidden;    
 }
 
-main{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
  
-    .conteiner1{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+.lado-visual {
+    flex: 1;              
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(93, 236, 158);
+    color: rgb(255, 255, 255);
+    padding: 2rem;
+}
+
+.conteudo-visual h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    font-family: 'Inter', sans-serif;  
+}
+
+ 
+@media (max-width: 768px) {
+    .lado-visual {
+        display: none;
     }
 }
 
-.input{
+ 
+.lado-formulario {
+    flex: 1;              
+    background-color: white;
     display: flex;
     flex-direction: column;
-    margin-bottom: 15px;
-    input{
-        width: 100%;
-    }
+    justify-content: center;  
+    align-items: center;      
+    position: relative;       
 }
 
+.lado-formulario header {
+    font-size: 0.9rem;
+}
+
+.lado-formulario header a {
+    color: #00A868;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.form-box {
+    width: 100%;
+    max-width: 400px; 
+    padding: 2rem;
+}
+
+.cabecalho-form {
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cabecalho-form h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5px;
+    gap: 0.5rem;
+}
+
+.input-group label {
+    font-weight: 500;
+    color: #555;
+}
+
+/* Ajuste nos inputs do PrimeNG para ocuparem 100% */
+:host ::ng-deep .p-inputtext {
+    width: 100%;
+}
+
+.animacao-container {
+    width: 100%;
+    max-width: 400px; 
+    height: 350px;
+    margin-top: 2rem; 
+}
 
 
 /* CSS */
-.button-3 {
-  appearance: none;
-  background-color: #2ea44f;
-  border: 1px solid rgba(27, 31, 35, .15);
-  border-radius: 6px;
-  box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
-  box-sizing: border-box;
-  color: #fff;
+.button-33 {
+  background-color: #c2fbd7;
+  border-radius: 100px;
+  box-shadow: rgba(44, 187, 99, .2) 0 -25px 18px -14px inset,rgba(44, 187, 99, .15) 0 1px 2px,rgba(44, 187, 99, .15) 0 2px 4px,rgba(44, 187, 99, .15) 0 4px 8px,rgba(44, 187, 99, .15) 0 8px 16px,rgba(44, 187, 99, .15) 0 16px 32px;
+  color: green;
+  width: 50%;
   cursor: pointer;
   display: inline-block;
-  font-family: -apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 20px;
-  padding: 6px 16px;
-  position: relative;
+  font-family: CerebriSans-Regular,-apple-system,system-ui,Roboto,sans-serif;
+  padding: 7px 20px;
   text-align: center;
   text-decoration: none;
+  transition: all 250ms;
+  border: 0;
+  font-size: 16px;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-  vertical-align: middle;
-  white-space: nowrap;
 }
 
-.button-3:focus:not(:focus-visible):not(.focus-visible) {
-  box-shadow: none;
-  outline: none;
+.button-33:hover {
+  box-shadow: rgba(44,187,99,.35) 0 -25px 18px -14px inset,rgba(44,187,99,.25) 0 1px 2px,rgba(44,187,99,.25) 0 2px 4px,rgba(44,187,99,.25) 0 4px 8px,rgba(44,187,99,.25) 0 8px 16px,rgba(44,187,99,.25) 0 16px 32px;
+  transform: scale(1.05) rotate(-1deg);
 }
 
-.button-3:hover {
-  background-color: #2c974b;
-}
-
-.button-3:focus {
-  box-shadow: rgba(46, 164, 79, .4) 0 0 0 3px;
-  outline: none;
-}
-
-.button-3:disabled {
-  background-color: #94d3a2;
-  border-color: rgba(27, 31, 35, .1);
-  color: rgba(255, 255, 255, .8);
-  cursor: default;
-}
-
-.button-3:active {
-  background-color: #298e46;
-  box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
-}
-
-.conteiner2{
-    background-color: #2ea44f;
+.botao{
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
 }

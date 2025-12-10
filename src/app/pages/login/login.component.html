@@ -1,92 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
+<main class="tela-dividida">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página de Login</title>
-    
-</head>
+    <div class="lado-visual">
+        <div class="conteudo-visual">
+            <h1>Dash Finanças</h1>
+            <p>Gerencie seu dinheiro de forma mais inteligente!</p>
 
-<body>
-    <header>
-        <p>Não tem uma conta?</p>
-        <button>Cadastre-se</button>
-    </header>
-    <main>
-        <div class="conteiner1">
-            <div>
-                <h2>Bem vindo ao Dash Finanças!</h2>
-                <p>Registre sua conta</p>
+            <div class="animacao-container">
+                <ng-lottie [options]="options"></ng-lottie>
             </div>
 
+        </div>
+    </div>
 
-            <form action="">
-                <div class="input">
+    <div class="lado-formulario">
+
+        <header>
+            <p>Não tem uma conta? <a href="#">Cadastre-se</a></p>
+        </header>
+
+        <div class="form-box">
+            <div class="cabecalho-form">
+                <h2>Bem vindo!</h2>
+                <p>Insira seus dados para entrar.</p>
+            </div>
+
+            <form>
+                <div class="input-group">
                     <label for="username">Usuário</label>
-                    <input pInputText id="username" aria-describedby="username-help" />
+                    <input pInputText id="username" placeholder="Seu nome de usuário" />
                 </div>
 
-                <div class="input">
-                    <label for="usuario">E-mail</label>
-                    <input name="email" pInputText id="usuario" aria-describedby="username-help"
-                        [(ngModel)]="email_input" />
+                <div class="input-group">
+                    <label for="email">E-mail</label>
+                    <input pInputText id="email" name="email" [(ngModel)]="email_input" placeholder="seu@email.com" />
                 </div>
 
-                <!-- <div class="input">
-                    <label for="usuario">Senha</label>
-                    <input name="senha" pInputText id="usuario" aria-describedby="username-help"
-                        [(ngModel)]="senha_input" />
-                </div> -->
-                <div class="input">
-                    <label for="">Senha</label>
-                    <p-password name="dada" [(ngModel)]="senha_input" [toggleMask]="true" />
+                <div class="input-group">
+                    <label for="senha">Senha</label>
+                    <p-password id="senha" name="senha" [(ngModel)]="senha_input" [toggleMask]="true" [feedback]="false"
+                        placeholder="••••••" styleClass="w-full" [inputStyle]="{'width':'100%'}"> </p-password>
                 </div>
 
-
-
-
+                <!-- HTML !-->
+                 <div class="botao">
+                     <button class="button-33" role="button">Entrar</button>
+                 </div>
             </form>
-
-            <!-- HTML !-->
-            <button class="button-3" role="button">Entrar</button>
-
         </div>
+    </div>
 
-        <div class="conteiner2">
-            <div>
-                <h2>Bem vindo ao Dash Finanças!</h2>
-                <p>Registre sua conta</p>
-            </div>
-
-
-            <form action="">
-                <div class="user">
-                    <label for="username">Username</label>
-                    <input pInputText id="username" aria-describedby="username-help" />
-                </div>
-
-                <div class="flex flex-col gap-2">
-                    <label for="usuario">E-mail</label>
-                    <input name="email" pInputText id="usuario" aria-describedby="username-help"
-                        [(ngModel)]="email_input" />
-                </div>
-
-                <div class="flex flex-col gap-2">
-                    <label for="usuario">Senha</label>
-                    <input name="senha" pInputText id="usuario" aria-describedby="username-help"
-                        [(ngModel)]="senha_input" />
-                </div>
-
-
-
-
-            </form>
-
-            <button>Entrar</button>
-
-        </div>
-    </main>
-</body>
-
-</html>
+</main>

@@ -3,6 +3,8 @@ import { provideRouter } from '@angular/router';
 import Aura from '@primeuix/themes/aura';
 import { routes } from './app.routes';
 import { providePrimeNG } from 'primeng/config';
+import { provideLottieOptions } from 'ngx-lottie';
+import player from 'lottie-web';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -15,6 +17,11 @@ export const appConfig: ApplicationConfig = {
           darkModeSelector: false
         }
       }
-    })
+    }),
+
+    // 3. Provedor do Lottie (Animação) -> ESTE BLOCO É O QUE RESOLVE SEU ERRO
+    provideLottieOptions({
+      player: () => player,
+    }),
   ]
 };
