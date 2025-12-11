@@ -1,0 +1,71 @@
+.div-principal {
+    height: 100%;
+    width: 100%;
+    display: flex;
+
+    .sidebar {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .logo-sidebar {
+            height: 80px;
+            width: 150px;
+        }
+
+        background-color: red;
+        display: flex;
+        flex-direction: column;
+        width: 180px;
+        height: 590px;
+
+        ul {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            justify-items: center;
+            align-items: center;
+            list-style: none;
+
+            p {
+                margin: 0;
+            }
+
+            li {
+                display: flex;
+                width: 150px;
+                gap: 5px;
+                // span{
+                //     width: 20px;
+                //     height: 20px;
+                // }
+            }
+        }
+    }
+
+    main {
+        height: 100%;
+        flex: 1;
+
+        .stepper {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            /* Centraliza verticalmente */
+            min-height: 80vh;
+            /* Precisa ter altura para poder centralizar */
+            .conteudo{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        .inicio {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+}
