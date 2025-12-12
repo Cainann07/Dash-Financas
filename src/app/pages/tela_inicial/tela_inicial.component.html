@@ -27,8 +27,8 @@
             <div class="card flex justify-center">
                 <p-stepper [value]="1" class="basis-[50rem]">
                     <p-step-list>
-                        <p-step [value]="1">Header I</p-step>
-                        <p-step [value]="2">Header II</p-step>
+                        <p-step [value]="1">Seu orçamento</p-step>
+                        <p-step [value]="2">Gastos Mensais</p-step>
                         <p-step [value]="3">Header II</p-step>
                     </p-step-list>
                     <p-step-panels>
@@ -37,10 +37,10 @@
                                 <div class="flex flex-col h-48">
                                     <div
                                         class="border-2 border-dashed border-surface-200 dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex-auto flex justify-center items-center font-medium">
-                                        <div class="conteudo">
+                                        <div class="conteudo-stepper1">
                                             <p>Insira o seu orçamento mensal:</p>
                                             <p-inputnumber [(ngModel)]="orcamento_input" inputId="minmax" mode="decimal"
-                                                [min]="0" [max]="100" />
+                                                [min]="0"  />
 
                                         </div>
 
@@ -56,10 +56,71 @@
                         <p-step-panel [value]="2">
                             <ng-template #content let-activateCallback="activateCallback">
                                 <div class="flex flex-col h-48">
-                                    <div
+                                    <!-- <div
                                         class="border-2 border-dashed border-surface-200 dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex-auto flex justify-center items-center font-medium">
-                                        Content II
+                                        <h2>Informe seus gastos mensais. (Um de cada vez)</h2>
+                                        <p>Com base nos seus gastos informados lhe retornaremos uma visão geral de
+                                            suas despesas.</p>
+                                        <div class="conteudo-stepper2">
+                                            <input type="text" pInputText [(ngModel)]="gasto_mensal" />
+                                            <p-button label="Adicionar" icon="pi pi-plus" size="small"
+                                            severity="success" />
+                                        </div>
+                                    </div> -->
+                                    <div
+                                        class="border-2 border-dashed border-surface-200 rounded p-4 flex flex-column align-items-center">
+
+                                        <h2>Informe seus gastos mensais</h2>
+                                        <p class="mb-4">Adicione suas despesas fixas (Aluguel, Internet, Academia, etc).
+                                        </p>
+
+                                        <div class="conteudo-stepper2 flex gap-2 align-items-center">
+
+                                            <input type="text" pInputText [(ngModel)]="tempGastoNome"
+                                                placeholder="Nome (Ex: Luz)" />
+
+                                            <p-inputNumber [(ngModel)]="tempGastoValor" mode="currency" currency="BRL"
+                                                locale="pt-BR" placeholder="R$ 0,00">
+                                            </p-inputNumber>
+
+                                            <p-button icon="pi pi-plus" (onClick)="adicionarGastoNaLista()"
+                                                severity="success" [disabled]="!tempGastoNome || !tempGastoValor">
+                                            </p-button>
+
+                                        </div>
+
+                                        @if (listaGastosIniciais.length > 0) {
+                                        <div id="tabela-gastos" class="mt-4 w-full" style="max-width: 500px; margin-bottom: 5rem;">
+                                            <p-table [value]="listaGastosIniciais" size="small"
+                                                [tableStyle]="{'min-width': '20rem'}">
+                                                <ng-template pTemplate="header">
+                                                    <tr>
+                                                        <th>Gasto</th>
+                                                        <th>Valor</th>
+                                                        <th style="width: 3rem"></th>
+                                                    </tr>
+                                                </ng-template>
+                                                <ng-template pTemplate="body" let-gasto let-i="rowIndex">
+                                                    <tr>
+                                                        <td>{{ gasto.nome }}</td>
+                                                        <td class="font-bold text-red-500">
+                                                            - {{ gasto.valor | currency:'BRL' }}
+                                                        </td>
+                                                        <td>
+                                                            <p-button icon="pi pi-trash" [text]="true" severity="danger"
+                                                                (onClick)="removerGasto(i)"></p-button>
+                                                        </td>
+                                                    </tr>
+                                                </ng-template>
+                                            </p-table>
+                                        </div>
+                                        }
                                     </div>
+
+                                    <!-- <div class="flex justify-content-end mt-4">
+                                        <p-button label="Próximo" (onClick)="activeIndex = 2"
+                                            [disabled]="listaGastosIniciais.length === 0"></p-button>
+                                    </div> -->
                                 </div>
                                 <div class="flex pt-6 justify-between">
                                     <p-button label="Back" severity="secondary" icon="pi pi-arrow-left"

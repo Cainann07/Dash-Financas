@@ -54,10 +54,36 @@
             /* Centraliza verticalmente */
             min-height: 80vh;
             /* Precisa ter altura para poder centralizar */
-            .conteudo{
+            width: 100%;
+            /* Tenta ocupar tudo */
+            max-width: 800px;
+            /* MAS... para de crescer quando chegar em 800px */
+            margin: 0 auto;
+
+            .conteudo-stepper1 {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
+            }
+
+            .conteudo-stepper2 {
+                display: flex;
+                gap: 10px;
+                align-items: center;
+                margin-bottom: 20px;
+
+                .tabela-gastos-container {
+                    margin-top: 1.5rem;
+                    /* Espaço em cima */
+                    width: 100%;
+                    max-width: 500px;
+                    margin-bottom: 2rem;
+                    /* <--- O espaço em baixo que você queria */
+                }
+
+                div {
+                    margin-bottom: 40px;
+                }
             }
         }
 
