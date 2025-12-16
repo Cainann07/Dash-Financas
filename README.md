@@ -20,9 +20,6 @@
 <hr />
 
 ## 📋 Sobre o Projeto
-... (o resto continua igual)
-
-## 📋 Sobre o Projeto
 
 O **FinanceControl** é uma aplicação Fullstack para gestão financeira pessoal. O objetivo é criar uma ferramenta intuitiva onde o usuário possa registrar orçamentos, acompanhar gastos fixos e variáveis, e visualizar a saúde financeira através de indicadores claros.
 
