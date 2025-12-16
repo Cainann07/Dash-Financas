@@ -1,20 +1,20 @@
 <div class="div-principal">
     <aside class="sidebar">
-        <img class="logo-sidebar" src="assets/wmremove-transformed-removebg-preview.png" alt="">
+        <img class="logo-sidebar" src="assets/wmremove-transformed-removebg-preview - Editado.png" alt="">
         <ul>
 
-            <li><span class="material-symbols-outlined">
-                    home
-                </span>
-                <p>Tela Inicial</p>
+            <li><a href=""><span class="material-symbols-outlined">
+                        home
+                    </span>
+                    Tela Inicial</a>
             </li>
-            <li><span class="material-symbols-outlined">settings</span>
-                <p>Configurações</p>
+            <li><a href=""><span class="material-symbols-outlined">settings</span>
+                    Configurações</a>
             </li>
-            <li><span class="material-symbols-outlined">
-                    logout
-                </span>
-                <p>Logout</p>
+            <li><a href=""><span class="material-symbols-outlined">
+                        logout
+                    </span>
+                    Logout</a>
             </li>
         </ul>
     </aside>
@@ -89,8 +89,8 @@
 
                                         </div>
 
-                                        <div *ngIf="listaGastosIniciais.length > 0" id="tabela-gastos" class="mt-4 w-full"
-                                            style="max-width: 500px; margin-bottom: 5rem;">
+                                        <div *ngIf="listaGastosIniciais.length > 0" id="tabela-gastos"
+                                            class="mt-4 w-full" style="max-width: 500px; margin-bottom: 5rem;">
                                             <p-table [value]="listaGastosIniciais" size="small"
                                                 [tableStyle]="{'min-width': '20rem'}">
                                                 <ng-template pTemplate="header">
@@ -114,14 +114,15 @@
                                                 </ng-template>
                                             </p-table>
                                         </div>
-                                        
+
 
                                     </div>
                                     <div class="flex pt-6 justify-between">
                                         <p-button label="Voltar" severity="secondary" icon="pi pi-arrow-left"
                                             (onClick)="activateCallback(1)" />
                                         <p-button label="Avançar" icon="pi pi-arrow-right" iconPos="right"
-                                            (onClick)="activateCallback(3)"  [disabled]="!(listaGastosIniciais.length > 0)" />
+                                            (onClick)="activateCallback(3)"
+                                            [disabled]="!(listaGastosIniciais.length > 0)" />
                                     </div>
                                 </div>
                             </ng-template>
@@ -129,79 +130,67 @@
 
                         <p-step-panel [value]="3">
                             <ng-template #content let-activateCallback="activateCallback">
-                                <div class="flex flex-col h-48">
-                                    <div
-                                        class="border-2 border-dashed border-surface-200 rounded p-5 flex flex-column gap-4">
+                                <div class="card-clean">
 
-                                        <h2 class="text-center m-0">Confira seus dados</h2>
-                                        <p class="text-center text-500 mb-3">Verifique se está tudo certo antes de criar
-                                            seu painel.</p>
+                                    <div class="header-clean">
+                                        <h2 class="titulo-principal">Revisão</h2>
 
-                                        <div class="review-item">
-                                            <div class="flex justify-content-between align-items-center mb-2">
-                                                <span class="text-lg font-bold text-700">💰 Sua Renda/Orçamento</span>
-                                                <!-- <p-button icon="pi pi-pencil" [text]="true" label="Alterar"
-                                                    (onClick)="activeIndex = 0"></p-button> -->
-                                            </div>
-
-                                            <div class="dado-destaque">
-                                                {{ orcamento_input | currency:'BRL' }}
-                                            </div>
-                                        </div>
-
-                                        <hr class="w-full border-top-1 border-none surface-border" />
-
-                                        <div class="review-item">
-                                            <div class="flex justify-content-between align-items-center mb-2">
-                                                <span class="text-lg font-bold text-700">📉 Seus Gastos Fixos</span>
-                                            </div>
-
-                                            <div *ngIf="listaGastosIniciais.length > 0; else semGastos">
-                                                <p-table [value]="listaGastosIniciais"
-                                                    styleClass="p-datatable-sm p-datatable-striped">
-                                                    <ng-template pTemplate="header">
-                                                        <tr>
-                                                            <th>Descrição</th>
-                                                            <th class="text-right">Valor</th>
-                                                        </tr>
-                                                    </ng-template>
-                                                    <ng-template pTemplate="body" let-gasto>
-                                                        <tr>
-                                                            <td>{{ gasto.nome }}</td>
-                                                            <td class="text-right text-red-500 font-medium">
-                                                                {{ gasto.valor | currency:'BRL' }}
-                                                            </td>
-                                                        </tr>
-                                                    </ng-template>
-                                                    <ng-template pTemplate="footer">
-                                                        <tr>
-                                                            <td class="text-right font-bold">Total:</td>
-                                                            <td class="text-right font-bold text-red-600">
-                                                                {{ totalGastos | currency:'BRL' }}
-                                                            </td>
-                                                        </tr>
-                                                    </ng-template>
-                                                </p-table>
-                                            </div>
-
-                                            <ng-template #semGastos>
-                                                <div class="p-3 surface-100 border-round text-center text-500">
-                                                    Nenhum gasto informado.
-                                                </div>
-                                            </ng-template>
-                                        </div>
-
-                                        <div class="botao-continuar">
-                                            <p-button label="Voltar" icon="pi pi-arrow-left" iconPos="right"
-                                                (onClick)="activateCallback(2)" size="small" />
-                                            <p-button label="Confirmar" icon="pi pi-check" severity="success"
-                                                size="small">
+                                        <div class="grupo-botoes">
+                                            <p-button label="Voltar" icon="pi pi-arrow-left"
+                                                styleClass="p-button-text p-button-secondary"
+                                                (onClick)="activateCallback(1)">
                                             </p-button>
+                                            <p-button label="Confirmar" icon="pi pi-check"
+                                                styleClass="p-button-rounded p-button-success"
+                                                (onClick)="finalizarSetup()">
+                                            </p-button>
+                                        </div>
+                                    </div>
+
+                                    <div class="grid-cards">
+
+                                        <div class="card-valor item-renda">
+                                            <span class="label">Sua Renda</span>
+                                            <span class="valor">{{ orcamento_input | currency:'BRL' }}</span>
+                                            <i class="pi pi-wallet icone-fundo"></i>
+                                        </div>
+
+                                        <div class="card-valor item-gasto">
+                                            <span class="label">Total Gastos</span>
+                                            <span class="valor text-red-600">- {{ totalGastos | currency:'BRL' }}</span>
+                                            <i class="pi pi-shopping-bag icone-fundo"></i>
+                                        </div>
+
+                                        <div class="card-valor item-saldo"
+                                            [ngClass]="saldoFinal >= 0 ? 'bg-verde' : 'bg-vermelho'">
+                                            <span class="label">Saldo Final</span>
+                                            <span class="valor" [style.color]="saldoFinal >= 0 ? '#166534' : '#991b1b'">
+                                                {{ saldoFinal | currency:'BRL' }}
+                                            </span>
+                                            <i class="pi pi-chart-line icone-fundo"></i>
                                         </div>
 
                                     </div>
-                                </div>
-                                <div class="flex pt-6 justify-start">
+
+                                    <div class="area-tabela">
+                                        <h4 class="titulo-tabela">Detalhamento</h4>
+
+                                        <p-table [value]="listaGastosIniciais" [scrollable]="true" scrollHeight="flex"
+                                            styleClass="p-datatable-sm">
+
+                                            <ng-template pTemplate="body" let-gasto>
+                                                <tr class="linha-tabela">
+                                                    <td style="width: 70%">
+                                                        <span class="nome-gasto">{{ gasto.nome }}</span>
+                                                    </td>
+                                                    <td style="width: 30%; text-align: right;">
+                                                        <span class="valor-gasto">- {{ gasto.valor | currency:'BRL'
+                                                            }}</span>
+                                                    </td>
+                                                </tr>
+                                            </ng-template>
+                                        </p-table>
+                                    </div>
 
                                 </div>
                             </ng-template>

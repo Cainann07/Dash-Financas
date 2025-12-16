@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { ButtonModule, Button } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputNumber } from 'primeng/inputnumber';
-import { StepperModule, Stepper, StepList, Step, StepPanels, StepPanel } from 'primeng/stepper';
+import { Stepper, StepList, Step, StepPanels, StepPanel } from 'primeng/stepper';
 import { TableModule } from 'primeng/table';
 import { CommonModule } from '@angular/common';
 
@@ -21,38 +21,47 @@ interface Gasto {
 export class TelaInicialComponent {
   orcamento_input = 0;
   gasto_mensal: string | undefined;
-  // Variáveis dos Inputs
   tempGastoNome: string = '';
   tempGastoValor: number | null = null;
 
-  // O Array que vai segurar a lista enquanto o usuário digita
   listaGastosIniciais: Gasto[] = [];
 
-  // Função que o botão "+" vai chamar
   adicionarGastoNaLista() {
     if (this.tempGastoNome && this.tempGastoValor) {
 
-      // 1. Cria o objeto
       const novoGasto: Gasto = {
         nome: this.tempGastoNome,
         valor: this.tempGastoValor
       };
 
-      // 2. Joga dentro do Array
       this.listaGastosIniciais.push(novoGasto);
 
-      // 3. Limpa os campos para o próximo
       this.tempGastoNome = '';
       this.tempGastoValor = null;
     }
   }
 
-  // Opcional: Permitir remover caso erre
   removerGasto(index: number) {
     this.listaGastosIniciais.splice(index, 1);
   }
 
   get totalGastos(): number {
     return this.listaGastosIniciais.reduce((total, item) => total + item.valor, 0);
+  }
+
+  get saldoFinal(): number {
+    const renda = this.orcamento_input || 0;
+    return renda - this.totalGastos;
+  }
+
+  finalizarSetup() {
+    const dadosFinais = {
+      renda: this.orcamento_input,
+      gastosFixos: this.listaGastosIniciais,
+      saldoPrevisto: this.saldoFinal
+    };
+
+    console.log('Enviando para o Back-end:', dadosFinais);
+    alert('Configuração concluída com sucesso!');
   }
 }
