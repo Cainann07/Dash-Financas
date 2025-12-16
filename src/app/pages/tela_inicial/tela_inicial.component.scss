@@ -95,3 +95,35 @@
         }
     }
 }
+
+.botao-continuar{
+    display: flex;
+    justify-content: space-between;
+}
+
+.review-item {
+    background-color: #f8f9fa;
+    /* Fundo cinza bem claro */
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+    margin-bottom: 10px;
+}
+
+.dado-destaque {
+    font-size: 1.5rem;
+    color: #004d30;
+    /* Verde escuro */
+    font-weight: bold;
+    background: white;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #dee2e6;
+    display: inline-block;
+    /* Ocupa só o espaço necessário */
+}
+
+/* Ajuste fino para a tabela ficar bonita dentro do card */
+:host ::ng-deep .p-datatable-sm .p-datatable-thead>tr>th {
+    background-color: transparent;
+}

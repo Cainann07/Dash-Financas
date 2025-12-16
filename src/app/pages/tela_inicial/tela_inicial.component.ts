@@ -52,4 +52,7 @@ export class TelaInicialComponent {
     this.listaGastosIniciais.splice(index, 1);
   }
 
+  get totalGastos(): number {
+    return this.listaGastosIniciais.reduce((total, item) => total + item.valor, 0);
+  }
 }
