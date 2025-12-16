@@ -1,13 +1,26 @@
 # 🚧 FinanceControl (Em Desenvolvimento)
 
 <div align="center">
-   ![Status](https://img.shields.io/badge/Status-Em_Desenvolvimento-yellow?style=for-the-badge&logo=git&logoColor=white)
-   ![Angular](https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white)
-   ![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
-   ![Spring Boot](https://img.shields.io/badge/Spring_Boot-F2F4F9?style=for-the-badge&logo=spring-boot)
+
+  <h1>💰 FinanceControl</h1>
+
+  <p>
+    Um gerenciador financeiro moderno focado em simplicidade.
+  </p>
+
+  <p>
+    <img src="https://img.shields.io/badge/Status-Em_Desenvolvimento-yellow?style=for-the-badge&logo=git&logoColor=white" alt="Status" />
+    <img src="https://img.shields.io/badge/Angular-17-DD0031?style=for-the-badge&logo=angular&logoColor=white" alt="Angular" />
+    <img src="https://img.shields.io/badge/Java-21-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white" alt="Java" />
+    <img src="https://img.shields.io/badge/Spring_Boot-3-F2F4F9?style=for-the-badge&logo=spring-boot" alt="Spring Boot" />
+  </p>
+
 </div>
 
-<br>
+<hr />
+
+## 📋 Sobre o Projeto
+... (o resto continua igual)
 
 ## 📋 Sobre o Projeto
 
