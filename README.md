@@ -1,8 +1,8 @@
-# 🚧 FinanceControl (Em Desenvolvimento)
+# 🚧 Dash Finanças (Em Desenvolvimento)
 
 <div align="center">
 
-  <h1>💰 FinanceControl</h1>
+  <h1>💰 Dash Finanças</h1>
 
   <p>
     Um gerenciador financeiro moderno focado em simplicidade.
@@ -21,7 +21,7 @@
 
 ## 📋 Sobre o Projeto
 
-O **FinanceControl** é uma aplicação Fullstack para gestão financeira pessoal. O objetivo é criar uma ferramenta intuitiva onde o usuário possa registrar orçamentos, acompanhar gastos fixos e variáveis, e visualizar a saúde financeira através de indicadores claros.
+O **Dash Finanças** é uma aplicação Fullstack para gestão financeira pessoal. O objetivo é criar uma ferramenta intuitiva onde o usuário possa registrar orçamentos, acompanhar gastos fixos e variáveis, e visualizar a saúde financeira através de indicadores claros.
 
 > **Nota:** Este projeto está em desenvolvimento ativo. As funcionalidades de Front-end estão sendo implementadas gradualmente utilizando as features mais recentes do Angular.
 
