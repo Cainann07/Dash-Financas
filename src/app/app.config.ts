@@ -5,6 +5,9 @@ import { routes } from './app.routes';
 import { providePrimeNG } from 'primeng/config';
 import { provideLottieOptions } from 'ngx-lottie';
 import player from 'lottie-web';
+import { provideAnimations } from '@angular/platform-browser/animations'; 
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+
 
 export const appConfig: ApplicationConfig = {
   providers: [

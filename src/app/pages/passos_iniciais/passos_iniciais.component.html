@@ -3,7 +3,7 @@
         <img class="logo-sidebar" src="assets/wmremove-transformed-removebg-preview - Editado.png" alt="">
         <ul>
 
-            <li><a href=""><span class="material-symbols-outlined">
+            <li><a href="src/app/pages/pagina_inicial/pagina_inicial.component.html"><span class="material-symbols-outlined">
                         home
                     </span>
                     Tela Inicial</a>
@@ -140,10 +140,11 @@
                                                 styleClass="p-button-text p-button-secondary"
                                                 (onClick)="activateCallback(1)">
                                             </p-button>
-                                            <p-button label="Confirmar" icon="pi pi-check"
-                                                styleClass="p-button-rounded p-button-success"
-                                                (onClick)="finalizarSetup()">
-                                            </p-button>
+                                            <a href="/src/app/pages/pagina_inicial/pagina_inicial.component.html">
+                                                <p-button label="Confirmar" icon="pi pi-check"
+                                                    styleClass="p-button-rounded p-button-success">
+                                                </p-button>
+                                            </a>
                                         </div>
                                     </div>
 
@@ -173,7 +174,7 @@
                                     </div>
 
                                     <div class="area-tabela">
-                                        <h4 class="titulo-tabela">Detalhamento</h4>
+                                        <h4 class="titulo-tabela">Gastos informados</h4>
 
                                         <p-table [value]="listaGastosIniciais" [scrollable]="true" scrollHeight="flex"
                                             styleClass="p-datatable-sm">

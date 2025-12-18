@@ -1,0 +1,218 @@
+<div class="div-principal">
+    <aside class="sidebar">
+        <img class="logo-sidebar" src="assets/wmremove-transformed-removebg-preview - Editado.png" alt="">
+        <ul>
+
+            <li><a href="src/app/pages/pagina_inicial/pagina_inicial.component.html"><span
+                        class="material-symbols-outlined">
+                        home
+                    </span>
+                    Tela Inicial</a>
+            </li>
+            <li><a href=""><span class="material-symbols-outlined">settings</span>
+                    Configurações</a>
+            </li>
+            <li><a href=""><span class="material-symbols-outlined">
+                        logout
+                    </span>
+                    Logout</a>
+            </li>
+        </ul>
+    </aside>
+    <main>
+        <div class="dashboard-container fade-in">
+
+            <header class="header-section">
+                <div class="header-content">
+                    <h1>Olá, Mateus! 👋</h1>
+                    <p>Resumo financeiro de hoje.</p>
+                </div>
+                <p-button label="Nova Transação" icon="pi pi-plus" styleClass="btn-primary"
+                    (click)="abrirModal()"></p-button>
+            </header>
+
+            <p-dialog header="Nova Movimentação" [(visible)]="modalVisivel" [modal]="true" [draggable]="false"
+                [resizable]="false" styleClass="modal-transacao">
+
+                <div class="form-grid">
+
+                    <div class="form-group full-width">
+                        <p-selectButton [options]="tipos" [(ngModel)]="novaTransacao.tipo" optionLabel="label"
+                            optionValue="value" styleClass="w-full"></p-selectButton>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="desc">Descrição</label>
+                        <input pInputText id="desc" [(ngModel)]="novaTransacao.descricao"
+                            placeholder="Ex: Compras do mês" class="input-full" />
+                    </div>
+
+                    <div class="form-group half-width">
+                        <label>Categoria</label>
+                        <p-select [options]="categorias" [(ngModel)]="novaTransacao.categoria" optionLabel="label"
+                            optionValue="value" placeholder="Selecione" appendTo="body" [style]="{'width': '100%'}">
+                        </p-select>
+                    </div>
+
+                    <div class="form-group half-width">
+                        <label>Valor (R$)</label>
+                        <p-inputNumber [(ngModel)]="novaTransacao.valor" mode="currency" currency="BRL" locale="pt-BR"
+                            placeholder="0,00" styleClass="input-full"></p-inputNumber>
+                    </div>
+
+                </div>
+
+                <ng-template pTemplate="footer">
+                    <button pButton label="Cancelar" class="btn-cancelar" (click)="modalVisivel = false"></button>
+                    <button pButton label="Salvar" class="btn-salvar" (click)="salvarTransacao()"></button>
+                </ng-template>
+
+            </p-dialog>
+
+            <section class="kpi-grid">
+
+                <div class="card-kpi border-green">
+                    <div class="kpi-header">
+                        <span>Meu orçamento</span>
+                        <div class="icon-box bg-green">
+                            <i class="pi pi-arrow-up"></i>
+                        </div>
+                    </div>
+                    <div class="kpi-value">{{ resumo.entrada | currency:'BRL' }}</div>
+                </div>
+
+                <div class="card-kpi border-red">
+                    <div class="kpi-header">
+                        <span>Minhas despesas</span>
+                        <div class="icon-box bg-red">
+                            <i class="pi pi-arrow-down"></i>
+                        </div>
+                    </div>
+                    <div class="kpi-value">{{ resumo.saida | currency:'BRL' }}</div>
+                </div>
+
+                <div class="card-kpi border-blue">
+                    <div class="kpi-header">
+                        <span>Saldo Atual</span>
+                        <div class="icon-box bg-blue">
+                            <i class="pi pi-wallet"></i>
+                        </div>
+                    </div>
+                    <div class="kpi-value text-blue">{{ resumo.saldo | currency:'BRL' }}</div>
+                </div>
+
+            </section>
+
+            <main class="main-grid">
+
+                <div class="content-column">
+
+                    <div class="card-widget">
+                        <div class="widget-header">
+                            <h3>Meus Objetivos</h3>
+                            <p-button icon="pi pi-plus" styleClass="btn-icon"></p-button>
+                        </div>
+
+                        <div class="goals-grid">
+                            <div class="goal-item" *ngFor="let meta of metas">
+
+                                <div class="goal-info">
+                                    <span class="goal-name">{{ meta.nome }}</span>
+                                    <span class="goal-percent">{{ meta.progresso }}%</span>
+                                </div>
+                                <div class="progress-track">
+                                    <div class="progress-fill" [style.width.%]="meta.progresso"
+                                        [style.background-color]="meta.cor"></div>
+                                </div>
+                                <small class="goal-values">{{ meta.atual | currency:'BRL' }} de {{ meta.alvo |
+                                    currency:'BRL' }}</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-widget">
+                        <div class="widget-header">
+                            <h3>Últimos Lançamentos</h3>
+                            <!-- <span class="p-input-icon-left search-box">
+                                <i class="pi pi-search"></i>
+                                <input class="input-" type="text" pInputText placeholder="Buscar..." />
+                            </span> -->
+                        </div>
+
+                        <p-table [value]="transacoes" styleClass="clean-table" [rows]="5">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th>Descrição</th>
+                                    <th>Categoria</th>
+                                    <th>Data</th>
+                                    <th class="text-right">Valor</th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-t>
+                                <tr>
+                                    <td class="font-bold">{{ t.nome }}</td>
+                                    <td><span class="badge">{{ t.categoria }}</span></td>
+                                    <td class="text-gray">{{ t.data }}</td>
+                                    <td class="text-right font-bold"
+                                        [ngClass]="t.tipo === 'despesa' ? 'text-red' : 'text-green'">
+                                        {{ t.tipo === 'despesa' ? '-' : '+' }} {{ t.valor | currency:'BRL' }}
+                                    </td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+
+                        <div class="table-footer">
+                            <a href="#">Ver extrato completo</a>
+                        </div>
+                    </div>
+                </div>
+
+                <aside class="sidebar-column">
+
+                    <div class="card-widget">
+                        <h3 class="sidebar-title">Contas a Pagar</h3>
+                        <ul class="bill-list">
+                            <li *ngFor="let conta of contasFuturas" class="bill-item">
+                                <div class="bill-date">
+                                    <small>VENC.</small>
+                                    <strong>{{ conta.data.split('/')[0] }}</strong>
+                                </div>
+                                <div class="bill-info">
+                                    <span class="bill-name">{{ conta.descricao }}</span>
+                                    <span *ngIf="conta.status === 'urgente'" class="status-alert">Vence Hoje!</span>
+                                </div>
+                                <div class="bill-action">
+                                    <span>{{ conta.valor | currency:'BRL' }}</span>
+                                    <!-- <button pButton icon="pi pi-check" class="btn-check"></button> -->
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="card-widget">
+                        <h3 class="sidebar-title">Top Gastos</h3>
+                        <div *ngFor="let item of topGastos" class="spending-item">
+                            <div class="spending-icon {{ item.bgIcone }} {{ item.corIcone }}">
+                                <i class="pi {{ item.icone }}"></i>
+                            </div>
+                            <span class="spending-name">{{ item.categoria }}</span>
+                            <span class="spending-value">{{ item.valor | currency:'BRL' }}</span>
+                        </div>
+                    </div>
+
+                    <div class="tip-card">
+                        <i class="pi pi-lightbulb"></i>
+                        <div>
+                            <strong>Dica do Mês</strong>
+                            <p>Você gastou 15% menos em Uber este mês. Parabéns!</p>
+                        </div>
+                    </div>
+
+                </aside>
+
+            </main>
+        </div>
+
+    </main>
+
+</div>

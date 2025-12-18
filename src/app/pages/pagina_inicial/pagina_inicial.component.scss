@@ -1,0 +1,488 @@
+.div-principal {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+
+    .sidebar {
+        padding-top: 15px;
+        border-radius: 0 5px 5px 0;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .logo-sidebar {
+            height: 80px;
+            width: 150px;
+        }
+
+        background-color: #03492F;
+        display: flex;
+        flex-direction: column;
+        width: 180px;
+        flex-shrink: 0;
+
+        ul {
+            padding-right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            justify-items: center;
+            align-items: center;
+            list-style: none;
+
+            p {
+                margin: 0;
+            }
+
+            li {
+                a {
+                    text-decoration: none;
+                    color: white;
+                    display: flex;
+                    gap: 5px;
+                }
+
+                align-content: center;
+                width: 150px;
+            }
+        }
+    }
+
+    main {
+        // height: 100%;
+        flex: 1;
+
+        .stepper {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 80vh;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+
+            .conteudo-stepper1 {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .conteudo-stepper2 {
+                display: flex;
+                gap: 10px;
+                align-items: center;
+                margin-bottom: 20px;
+
+                .tabela-gastos-container {
+                    margin-top: 1.5rem;
+                    width: 100%;
+                    max-width: 500px;
+                    margin-bottom: 2rem;
+                }
+
+                div {
+                    margin-bottom: 40px;
+                }
+            }
+        }
+
+        .inicio {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+    }
+
+    /* --- ESTRUTURA GLOBAL --- */
+    .dashboard-container {
+        max-width: 1280px;
+        margin: 0 auto;
+        width: 100%;
+        padding: 2rem;
+        font-family: var(--font-family);
+        /* Usa a fonte do PrimeNG */
+    }
+
+    /* Header */
+    .header-section {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+    }
+
+    .header-content h1 {
+        font-size: 1.75rem;
+        color: #1f2937;
+        margin: 0;
+    }
+
+    .header-content p {
+        color: #6b7280;
+        margin: 0.5rem 0 0 0;
+    }
+
+    /* --- GRID DOS CARDS SUPERIORES (KPIs) --- */
+    .kpi-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        /* 3 colunas iguais */
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    /* Responsividade: No celular vira 1 coluna */
+    @media (max-width: 768px) {
+
+        .kpi-grid,
+        .main-grid {
+            grid-template-columns: 1fr !important;
+        }
+    }
+
+    .card-kpi {
+        background: white;
+        padding: 1.5rem;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        border-left: 4px solid transparent;
+        /* Prepara a borda colorida */
+    }
+
+    .card-kpi.border-green {
+        border-left-color: #10b981;
+    }
+
+    .card-kpi.border-red {
+        border-left-color: #ef4444;
+    }
+
+    .card-kpi.border-blue {
+        border-left-color: #3b82f6;
+    }
+
+    .kpi-header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+        color: #6b7280;
+        font-weight: 500;
+    }
+
+    .icon-box {
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .kpi-value {
+        font-size: 2rem;
+        font-weight: 800;
+        color: #111827;
+    }
+
+    /* Cores Auxiliares */
+    .bg-green {
+        background-color: #d1fae5;
+        color: #059669;
+    }
+
+    .bg-red {
+        background-color: #fee2e2;
+        color: #b91c1c;
+    }
+
+    .bg-blue {
+        background-color: #dbeafe;
+        color: #2563eb;
+    }
+
+    .text-blue {
+        color: #2563eb;
+    }
+
+    .text-green {
+        color: #059669;
+    }
+
+    .text-red {
+        color: #dc2626;
+    }
+
+    .text-gray {
+        color: #6b7280;
+    }
+
+    /* --- GRID PRINCIPAL (Conteúdo + Sidebar) --- */
+    .main-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        /* Esquerda ocupa 2x mais que Direita */
+        gap: 1.5rem;
+    }
+
+    .card-widget {
+        background: white;
+        padding: 1.5rem;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        margin-bottom: 1.5rem;
+    }
+
+    .widget-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1.5rem;
+    }
+
+    .widget-header h3 {
+        margin: 0;
+        font-size: 1.25rem;
+        color: #1f2937;
+    }
+
+    /* --- ESTILOS ESPECÍFICOS (Metas, Tabela, Sidebar) --- */
+
+    /* Metas */
+    .goals-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+    }
+
+    .goal-item {
+        border: 1px solid #e5e7eb;
+        padding: 1rem;
+        border-radius: 8px;
+    }
+
+    .goal-info {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+        color: #374151;
+    }
+
+    .progress-track {
+        background: #f3f4f6;
+        height: 8px;
+        border-radius: 99px;
+        overflow: hidden;
+        margin-bottom: 0.5rem;
+    }
+
+    .progress-fill {
+        height: 100%;
+        border-radius: 99px;
+    }
+
+    /* Tabela */
+    .clean-table th {
+        background: white !important;
+        border: none !important;
+        color: #9ca3af !important;
+        text-transform: uppercase;
+        font-size: 0.8rem;
+        padding: 1rem !important;
+    }
+
+    .clean-table td {
+        border-bottom: 1px solid #f3f4f6 !important;
+        padding: 1rem !important;
+    }
+
+    .badge {
+        background: #f3f4f6;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 0.85rem;
+        color: #4b5563;
+    }
+
+    .table-footer {
+        text-align: center;
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 1px solid #f3f4f6;
+    }
+
+    .table-footer a {
+        color: #3b82f6;
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+    /* Sidebar Listas */
+    .sidebar-title {
+        margin: 0 0 1rem 0;
+        font-size: 1.1rem;
+        color: #1f2937;
+    }
+
+    .bill-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 0;
+        border-bottom: 1px solid #f3f4f6;
+    }
+
+    .bill-item:last-child {
+        border-bottom: none;
+    }
+
+    .bill-date {
+        background: #f3f4f6;
+        border-radius: 8px;
+        padding: 0.5rem;
+        text-align: center;
+        min-width: 3.5rem;
+        margin-right: 1rem;
+    }
+
+    .bill-date small {
+        display: block;
+        font-size: 0.6rem;
+        color: #6b7280;
+    }
+
+    .bill-date strong {
+        display: block;
+        font-size: 1.1rem;
+        color: #1f2937;
+    }
+
+    .bill-info {
+        flex: 1;
+    }
+
+    .bill-name {
+        display: block;
+        font-weight: 500;
+    }
+
+    .status-alert {
+        font-size: 0.75rem;
+        color: #ef4444;
+        font-weight: bold;
+    }
+
+    .spending-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+    }
+
+    .spending-icon {
+        width: 2rem;
+        height: 2rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 0.75rem;
+    }
+
+    .tip-card {
+        background: #eff6ff;
+        border: 1px solid #dbeafe;
+        border-radius: 12px;
+        padding: 1rem;
+        display: flex;
+        gap: 1rem;
+        color: #1e40af;
+    }
+
+    /* ... (Seus estilos do dashboard continuam aqui) ... */
+
+
+    /* --- ESTILOS DO MODAL --- */
+
+    /* Ajusta a largura do modal */
+    :host ::ng-deep .modal-transacao {
+        width: 90%;
+        max-width: 500px;
+        /* Não deixa ficar gigante no PC */
+    }
+
+    /* O Grid do Formulário */
+    .form-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        padding-top: 0.5rem;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .form-group label {
+        font-weight: 600;
+        color: #374151;
+        font-size: 0.9rem;
+    }
+
+    /* Tamanhos dos campos */
+    .full-width {
+        width: 100%;
+    }
+
+    .half-width {
+        width: calc(50% - 0.5rem);
+        /* Divide em 2 colunas com espaço no meio */
+    }
+
+    /* Classes utilitárias para forçar largura total nos componentes PrimeNG */
+    :host ::ng-deep .input-full {
+        width: 100%;
+    }
+
+    :host ::ng-deep .dropdown-full {
+        width: 100%;
+    }
+
+    /* Botões do Rodapé */
+    :host ::ng-deep .btn-cancelar.p-button {
+        background: transparent;
+        color: #6b7280;
+        border: none;
+        font-weight: 600;
+    }
+
+    :host ::ng-deep .btn-cancelar.p-button:hover {
+        background: #f3f4f6;
+        color: #1f2937;
+    }
+
+    :host ::ng-deep .btn-salvar.p-button {
+        background: #10b981;
+        /* Verde Sucesso */
+        border: 1px solid #10b981;
+        font-weight: 600;
+        padding: 0.5rem 2rem;
+    }
+
+    :host ::ng-deep .btn-salvar.p-button:hover {
+        background: #059669;
+    }
+
+    /* Responsividade do Modal: No celular, tudo vira 1 coluna */
+    @media (max-width: 500px) {
+        .half-width {
+            width: 100%;
+        }
+    }
+}

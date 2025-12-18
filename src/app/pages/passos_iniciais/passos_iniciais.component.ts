@@ -13,12 +13,12 @@ interface Gasto {
 }
 
 @Component({
-  selector: 'app-tela_inicial',
+  selector: 'app-passos_iniciais',
   imports: [CommonModule, TableModule, FormsModule, ButtonModule, InputTextModule, Button, InputNumber, Stepper, StepList, Step, StepPanels, StepPanel],
-  templateUrl: './tela_inicial.component.html',
-  styleUrl: './tela_inicial.component.scss',
+  templateUrl: './passos_iniciais.component.html',
+  styleUrl: './passos_iniciais.component.scss',
 })
-export class TelaInicialComponent {
+export class PassosIniciaisComponent {
   orcamento_input = 0;
   gasto_mensal: string | undefined;
   tempGastoNome: string = '';

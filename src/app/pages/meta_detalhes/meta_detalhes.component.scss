@@ -1,0 +1,190 @@
+/* --- ESTRUTURA BÁSICA --- */
+.pagina-detalhe {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.cabecalho {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.card-cofre {
+    background: white;
+    border-radius: 20px;
+    padding: 3rem 2rem;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    margin-bottom: 2rem;
+    border: 1px solid #f3f4f6;
+}
+
+.icone-destaque {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin: 0 auto 1.5rem auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f8fafc;
+}
+
+.icone-destaque i {
+    font-size: 2.5rem;
+}
+
+.titulo-meta {
+    margin: 0 0 1rem 0;
+    color: #1f2937;
+}
+
+.valor-atual {
+    font-size: 3rem;
+    font-weight: 800;
+    display: block;
+    color: #111827;
+}
+
+.valor-alvo {
+    color: #9ca3af;
+}
+
+.area-progresso {
+    margin: 2rem 0;
+}
+
+.textos-progresso {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #4b5563;
+}
+
+/* Tabela Limpa */
+:host ::ng-deep .tabela-clean th {
+    background: transparent !important;
+    border-bottom: 2px solid #f3f4f6;
+}
+
+:host ::ng-deep .tabela-clean td {
+    border-bottom: 1px solid #f3f4f6;
+    padding: 1rem;
+}
+
+.valor-positivo {
+    color: #16a34a;
+    font-weight: bold;
+}
+
+/* =========================================
+   AQUI ESTÃO OS TEMAS (O JEITO SIMPLES)
+   ========================================= */
+
+/* --- TEMA AZUL --- */
+.tema-azul .icone-destaque {
+    color: #3B82F6;
+    background-color: #eff6ff;
+}
+
+.tema-azul .btn-guardar {
+    background-color: #3B82F6;
+    border-color: #3B82F6;
+}
+
+.tema-azul .btn-confirmar {
+    background-color: #3B82F6;
+    border-color: #3B82F6;
+}
+
+/* Muda a cor da barra de progresso do PrimeNG */
+.tema-azul ::ng-deep .p-progressbar .p-progressbar-value {
+    background: #3B82F6;
+}
+
+/* --- TEMA VERDE --- */
+.tema-verde .icone-destaque {
+    color: #10B981;
+    background-color: #ecfdf5;
+}
+
+.tema-verde .btn-guardar {
+    background-color: #10B981;
+    border-color: #10B981;
+}
+
+.tema-verde .btn-confirmar {
+    background-color: #10B981;
+    border-color: #10B981;
+}
+
+.tema-verde ::ng-deep .p-progressbar .p-progressbar-value {
+    background: #10B981;
+}
+
+/* --- TEMA ROXO --- */
+.tema-roxo .icone-destaque {
+    color: #8B5CF6;
+    background-color: #f5f3ff;
+}
+
+.tema-roxo .btn-guardar {
+    background-color: #8B5CF6;
+    border-color: #8B5CF6;
+}
+
+.tema-roxo .btn-confirmar {
+    background-color: #8B5CF6;
+    border-color: #8B5CF6;
+}
+
+.tema-roxo ::ng-deep .p-progressbar .p-progressbar-value {
+    background: #8B5CF6;
+}
+
+/* Estilização Geral dos Botões */
+:host ::ng-deep .btn-guardar {
+    border-radius: 50px;
+    padding: 0.8rem 2rem;
+    font-weight: 700;
+    width: 100%;
+    max-width: 300px;
+}
+
+/* Estilo para inputs nativos ficarem iguais ao PrimeNG */
+.input-padrao {
+    width: 100%;
+    /* Ocupa todo o espaço */
+    padding: 0.75rem;
+    /* Espaçamento interno confortável */
+    border: 1px solid #d1d5db;
+    /* Borda cinza suave */
+    border-radius: 6px;
+    /* Cantos arredondados */
+    background-color: white;
+    color: #374151;
+    /* Texto cinza escuro */
+    font-size: 1rem;
+    outline: none;
+    /* Remove a borda azul padrão do browser */
+    transition: border-color 0.2s;
+    appearance: none;
+    /* Remove a seta feia padrão (opcional) */
+
+    /* Recoloca uma seta bonitinha via CSS (opcional, se quiser simples pode tirar) */
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 0.5rem center;
+    background-repeat: no-repeat;
+    background-size: 1.5em 1.5em;
+}
+
+.input-padrao:focus {
+    border-color: #3b82f6;
+    /* Fica azul quando clica (igual PrimeNG) */
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+    /* Sombra suave */
+}
