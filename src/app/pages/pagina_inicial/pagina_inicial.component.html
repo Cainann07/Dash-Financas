@@ -27,8 +27,6 @@
                     <h1>Olá, Mateus! 👋</h1>
                     <p>Resumo financeiro de hoje.</p>
                 </div>
-                <p-button label="Nova Transação" icon="pi pi-plus" styleClass="btn-primary"
-                    (click)="abrirModal()"></p-button>
             </header>
 
             <p-dialog header="Nova Movimentação" [(visible)]="modalVisivel" [modal]="true" [draggable]="false"
@@ -57,7 +55,7 @@
                     <div class="form-group half-width">
                         <label>Valor (R$)</label>
                         <p-inputNumber [(ngModel)]="novaTransacao.valor" mode="currency" currency="BRL" locale="pt-BR"
-                            placeholder="0,00" styleClass="input-full"></p-inputNumber>
+                            placeholder="0,00"></p-inputNumber>
                     </div>
 
                 </div>
@@ -107,36 +105,142 @@
 
                 <div class="content-column">
 
-                    <div class="card-widget">
+                    <div class="card-widget mb-4">
                         <div class="widget-header">
                             <h3>Meus Objetivos</h3>
-                            <p-button icon="pi pi-plus" styleClass="btn-icon"></p-button>
+                            <p-button icon="pi pi-plus" styleClass="btn-icon-round"
+                                (click)="abrirCriarMeta()"></p-button>
                         </div>
 
-                        <div class="goals-grid">
-                            <div class="goal-item" *ngFor="let meta of metas">
+                        <div class="lista-metas">
+                            <div *ngFor="let meta of metas.slice(0, 2)" class="meta-card" [style.--cor-meta]="meta.cor"
+                                (click)="abrirDetalhesMeta(meta)">
 
-                                <div class="goal-info">
-                                    <span class="goal-name">{{ meta.nome }}</span>
-                                    <span class="goal-percent">{{ meta.progresso }}%</span>
+                                <div class="meta-info">
+                                    <span class="meta-nome">{{ meta.nome }}</span>
+                                    <span class="meta-percent">{{ meta.progresso }}%</span>
                                 </div>
-                                <div class="progress-track">
-                                    <div class="progress-fill" [style.width.%]="meta.progresso"
-                                        [style.background-color]="meta.cor"></div>
+
+                                <div class="barra-trilho">
+                                    <div class="barra-preenchimento" [style.width.%]="meta.progresso"></div>
                                 </div>
-                                <small class="goal-values">{{ meta.atual | currency:'BRL' }} de {{ meta.alvo |
-                                    currency:'BRL' }}</small>
+
+                                <small class="meta-valores">
+                                    {{ meta.atual | currency:'BRL' }} de {{ meta.alvo | currency:'BRL' }}
+                                </small>
                             </div>
                         </div>
+
+                        <div *ngIf="metas.length > 2" class="botao-ver-mais">
+                            <button pButton [label]="'Ver todos (' + metas.length + ')'" class="btn-expandir"
+                                (click)="exibirTodasMetas()">
+                            </button>
+                        </div>
                     </div>
+
+                    <p-dialog [(visible)]="modalTodasMetasVisivel" [modal]="true" header="Todos os Objetivos"
+                        [draggable]="false" styleClass="modal-lista" [resizable]="false">
+
+                        <div class="container-scroll">
+                            <div *ngFor="let meta of metas" class="meta-card" [style.--cor-meta]="meta.cor"
+                                (click)="abrirDetalhesMeta(meta)">
+
+                                <div class="meta-info">
+                                    <span class="meta-nome">{{ meta.nome }}</span>
+                                    <span class="meta-percent">{{ meta.progresso }}%</span>
+                                </div>
+
+                                <div class="barra-trilho">
+                                    <div class="barra-preenchimento" [style.width.%]="meta.progresso"></div>
+                                </div>
+
+                                <small class="meta-valores">
+                                    {{ meta.atual | currency:'BRL' }} de {{ meta.alvo | currency:'BRL' }}
+                                </small>
+                            </div>
+                        </div>
+                    </p-dialog>
+
+                    <p-dialog [(visible)]="modalMetaVisivel" [modal]="true" [header]="metaSelecionada?.nome"
+                        [draggable]="false" styleClass="modal-objetivo" [resizable]="false">
+
+                        <div *ngIf="metaSelecionada" class="modal-conteudo" [style.--cor-tema]="metaSelecionada.cor">
+                            <div class="hero-section">
+                                <div class="icone-circulo">
+                                    <i class="pi" [ngClass]="metaSelecionada.icone"></i>
+                                </div>
+                                <h2 class="valor-grande">{{ metaSelecionada.atual | currency:'BRL' }}</h2>
+                                <p class="valor-meta">Meta: {{ metaSelecionada.alvo | currency:'BRL' }}</p>
+                                <div class="barra-modal-container">
+                                    <p-progressBar [value]="metaSelecionada.progresso"></p-progressBar>
+                                </div>
+                            </div>
+
+                            <div class="area-deposito">
+                                <label>Guardar dinheiro neste cofre</label>
+                                <div class="input-group">
+                                    <p-inputNumber [(ngModel)]="valorDeposito" mode="currency" currency="BRL"
+                                        locale="pt-BR" placeholder="R$ 0,00"
+                                        styleClass="input-expandido"></p-inputNumber>
+                                    <button pButton icon="pi pi-check" class="btn-confirmar"
+                                        (click)="depositarNoCofre()"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </p-dialog>
+
+                    <p-dialog [(visible)]="modalCriarMetaVisivel" [modal]="true" header="Novo Objetivo"
+                        [draggable]="false" styleClass="modal-criacao" [resizable]="false">
+
+                        <div class="form-container">
+
+                            <div class="campo-form">
+                                <label>Nome do Objetivo</label>
+                                <input pInputText [(ngModel)]="novaMeta.nome" placeholder="Ex: Viagem, Carro, PC Gamer"
+                                    class="input-padrao-texto" />
+                            </div>
+
+                            <div class="grid-valores">
+                                <div class="campo-form">
+                                    <label>Valor Alvo (Meta)</label>
+                                    <p-inputNumber [(ngModel)]="novaMeta.alvo" mode="currency" currency="BRL"
+                                        locale="pt-BR" placeholder="R$ 0,00" styleClass="input-full">
+                                    </p-inputNumber>
+                                </div>
+
+                                <div class="campo-form">
+                                    <label>Já tem algo guardado?</label>
+                                    <p-inputNumber [(ngModel)]="novaMeta.inicial" mode="currency" currency="BRL"
+                                        locale="pt-BR" placeholder="R$ 0,00 (Opcional)" styleClass="input-full">
+                                    </p-inputNumber>
+                                </div>
+                            </div>
+
+                            <div class="form-group half-width">
+                                <label>Categoria</label>
+                                <p-select [options]="categorias" [(ngModel)]="novaTransacao.categoria"
+                                    optionLabel="label" optionValue="value" placeholder="Selecione" appendTo="body"
+                                    [style]="{'width': '100%'}">
+                                </p-select>
+                            </div>
+
+                        </div>
+
+                        <ng-template pTemplate="footer">
+                            <button pButton label="Cancelar" class="btn-texto"
+                                (click)="modalCriarMetaVisivel = false"></button>
+                            <button pButton label="Criar Objetivo" class="btn-primario"
+                                [disabled]="!novaMeta.nome || !novaMeta.alvo" (click)="salvarNovaMeta()">
+                            </button>
+                        </ng-template>
+
+                    </p-dialog>
 
                     <div class="card-widget">
                         <div class="widget-header">
                             <h3>Últimos Lançamentos</h3>
-                            <!-- <span class="p-input-icon-left search-box">
-                                <i class="pi pi-search"></i>
-                                <input class="input-" type="text" pInputText placeholder="Buscar..." />
-                            </span> -->
+                            <p-button label="Nova Transação" icon="pi pi-plus" styleClass="btn-primary"
+                                (click)="abrirModal()"></p-button>
                         </div>
 
                         <p-table [value]="transacoes" styleClass="clean-table" [rows]="5">
@@ -199,15 +303,6 @@
                             <span class="spending-value">{{ item.valor | currency:'BRL' }}</span>
                         </div>
                     </div>
-
-                    <div class="tip-card">
-                        <i class="pi pi-lightbulb"></i>
-                        <div>
-                            <strong>Dica do Mês</strong>
-                            <p>Você gastou 15% menos em Uber este mês. Parabéns!</p>
-                        </div>
-                    </div>
-
                 </aside>
 
             </main>
