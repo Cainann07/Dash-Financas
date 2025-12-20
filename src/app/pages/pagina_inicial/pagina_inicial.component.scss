@@ -7,13 +7,20 @@
         padding-top: 15px;
         border-radius: 0 5px 5px 0;
         color: white;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+
+        .sidebar-content {
+            position: fixed;
+            width: 180px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+        }
 
         .logo-sidebar {
             height: 80px;
             width: 150px;
+            margin: 0 auto;
         }
 
         background-color: #03492F;
@@ -102,25 +109,26 @@
         width: 100%;
         padding: 2rem;
         font-family: var(--font-family);
-    }
 
-    /* Header */
-    .header-section {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 2rem;
-    }
+        /* Header */
+        .header-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
 
-    .header-content h1 {
-        font-size: 1.75rem;
-        color: #1f2937;
-        margin: 0;
-    }
+        .header-content h1 {
+            font-size: 1.75rem;
+            color: #1f2937;
+            margin: 0;
+        }
 
-    .header-content p {
-        color: #6b7280;
-        margin: 0.5rem 0 0 0;
+        .header-content p {
+            color: #6b7280;
+            margin: 0.5rem 0 0 0;
+        }
+
     }
 
     /* --- GRID DOS CARDS SUPERIORES (KPIs) --- */
@@ -129,6 +137,8 @@
         grid-template-columns: repeat(3, 1fr);
         gap: 1.5rem;
         margin-bottom: 2rem;
+
+
     }
 
     .card-kpi {
@@ -149,6 +159,7 @@
 
     .card-kpi.border-blue {
         border-left-color: #3b82f6;
+
     }
 
     .kpi-header {
@@ -173,6 +184,9 @@
         font-weight: 800;
         color: #111827;
     }
+
+
+
 
     /* Cores Auxiliares */
     .bg-green {
@@ -211,28 +225,31 @@
         display: grid;
         grid-template-columns: 2fr 1fr;
         gap: 1.5rem;
+
+        .card-widget {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            margin-bottom: 1.5rem;
+
+            .widget-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 1.5rem;
+            }
+        }
+
+        .widget-header h3 {
+            margin: 0;
+            font-size: 1.25rem;
+            color: #1f2937;
+        }
     }
 
-    .card-widget {
-        background: white;
-        padding: 1.5rem;
-        border-radius: 12px;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        margin-bottom: 1.5rem;
-    }
 
-    .widget-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 1.5rem;
-    }
 
-    .widget-header h3 {
-        margin: 0;
-        font-size: 1.25rem;
-        color: #1f2937;
-    }
 
     /* --- ESTILOS ESPECÍFICOS (Metas, Tabela, Sidebar) --- */
 
@@ -715,10 +732,10 @@
     .container-scroll {
         max-height: 60vh;
         overflow-y: auto;
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
         padding: 0.5rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1rem;
     }
 
     .container-scroll::-webkit-scrollbar {
@@ -804,7 +821,6 @@
         font-size: 1.25rem;
     }
 
-    /* Estado: Hover */
     .item-tema:hover {
         background-color: #e5e7eb;
     }
@@ -834,5 +850,108 @@
         background: #e5e7eb;
         border-color: #e5e7eb;
         color: #9ca3af;
+    }
+
+    /* --- Link do Rodapé do Widget --- */
+    .rodape-widget {
+        text-align: center;
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 1px solid #f3f4f6;
+    }
+
+    .link-acao {
+        color: #3b82f6;
+        font-weight: 500;
+        text-decoration: none;
+        font-size: 0.875rem;
+        cursor: pointer;
+    }
+
+    .link-acao:hover {
+        text-decoration: underline;
+    }
+
+    /* --- MODAL DE EXTRATO (Largo) --- */
+    :host ::ng-deep .modal-extrato {
+        width: 100%;
+        max-width: 800px;
+        /* Define a largura aqui, não no HTML */
+    }
+
+    /* --- TABELA CUSTOMIZADA --- */
+
+    /* Cabeçalho */
+    :host ::ng-deep .tabela-limpa th {
+        background-color: #f9fafb !important;
+        border-bottom: 2px solid #e5e7eb !important;
+        color: #4b5563;
+        font-weight: 600;
+        font-size: 0.9rem;
+        padding: 1rem !important;
+        text-transform: uppercase;
+    }
+
+    /* Células */
+    :host ::ng-deep .tabela-limpa td {
+        padding: 1rem !important;
+        border-bottom: 1px solid #f3f4f6;
+        vertical-align: middle;
+    }
+
+    /* Tipografia da Tabela */
+    .texto-principal {
+        display: block;
+        font-weight: 700;
+        color: #374151;
+    }
+
+    .texto-secundario {
+        color: #9ca3af;
+        text-transform: capitalize;
+    }
+
+    .texto-data {
+        color: #6b7280;
+        font-size: 0.9rem;
+    }
+
+    /* Badge de Categoria */
+    .badge-categoria {
+        background-color: #f3f4f6;
+        color: #4b5563;
+        padding: 0.25rem 0.75rem;
+        border-radius: 99px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        white-space: nowrap;
+    }
+
+    /* Coluna de Valor */
+    .coluna-valor {
+        text-align: right;
+        font-weight: 700;
+    }
+
+    .valor-negativo {
+        color: #ef4444;
+        /* Vermelho */
+    }
+
+    .valor-positivo {
+        color: #10b981;
+        /* Verde */
+    }
+
+    /* Mensagem Vazia */
+    .mensagem-vazia {
+        text-align: center;
+        padding: 2rem !important;
+        color: #9ca3af;
+    }
+
+    /* Ajuste do Paginador (Rodapé da tabela) */
+    :host ::ng-deep .tabela-limpa .p-paginator {
+        border-top: 1px solid #e5e7eb;
     }
 }

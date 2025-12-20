@@ -229,4 +229,11 @@ export class PaginaInicialComponent {
             this.modalCriarMetaVisivel = false;
         }
     }
+
+    // Controle do Modal de Extrato
+  modalExtratoVisivel: boolean = false;
+
+  abrirExtratoCompleto() {
+    this.modalExtratoVisivel = true;
+  }
 }
