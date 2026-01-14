@@ -5,6 +5,9 @@ public class UsuarioDTOResponse {
     private String sobrenome;
     private String email;
 
+    public UsuarioDTOResponse() {
+    }
+
     public UsuarioDTOResponse(String nome, String sobrenome, String email) {
         this.nome = nome;
         this.sobrenome = sobrenome;

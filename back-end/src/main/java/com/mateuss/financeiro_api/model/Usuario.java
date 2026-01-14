@@ -21,6 +21,10 @@ public class Usuario {
     @NotBlank(message = "A senha é obrigatória")
     private String senha;
 
+
+    public Usuario() {
+    }
+
     public Usuario(String nome, String sobrenome, String email, String senha) {
         this.nome = nome;
         this.sobrenome = sobrenome;
