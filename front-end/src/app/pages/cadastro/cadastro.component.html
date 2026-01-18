@@ -8,22 +8,25 @@
             <div class="animacao-container">
                 <ng-lottie [options]="options"></ng-lottie>
             </div>
+
         </div>
     </div>
 
     <div class="lado-formulario">
 
-        <header>
-            <p>Não tem uma conta? <a href="#">Cadastre-se</a></p>
-        </header>
 
         <div class="form-box">
             <div class="cabecalho-form">
                 <h2>Bem vindo!</h2>
-                <p>Insira seus dados para entrar.</p>
+                <p>Insira seus dados para criar uma conta na Dash Finanças.</p>
             </div>
 
             <form>
+                <div class="input-group">
+                    <label for="username">Seu nome de usuário</label>
+                    <input pInputText id="username" placeholder="Insira seu nome de usuário..." />
+                </div>
+
                 <div class="input-group">
                     <label for="email">E-mail</label>
                     <input pInputText id="email" name="email" [(ngModel)]="email_input" placeholder="Insira seu e-mail..." />
@@ -32,13 +35,18 @@
                 <div class="input-group">
                     <label for="senha">Senha</label>
                     <p-password id="senha" name="senha" [(ngModel)]="senha_input" [toggleMask]="true" [feedback]="false"
-                        placeholder="••••••"  [inputStyle]="{'width':'100%'}"> </p-password>
+                        placeholder="••••••" [inputStyle]="{'width':'100%'}" />
+
+                    <label for="senha">Confirme sua senha</label>
+                    <p-password id="senha" name="senha" [(ngModel)]="senha_input" [toggleMask]="true" [feedback]="false"
+                        placeholder="••••••" [inputStyle]="{'width':'100%'}" />
+
                 </div>
 
                 <!-- HTML !-->
-                 <div class="botao">
-                     <button class="button-33" role="button">Entrar</button>
-                 </div>
+                <div class="botao">
+                    <button class="button-33" role="button">Entrar</button>
+                </div>
             </form>
         </div>
     </div>

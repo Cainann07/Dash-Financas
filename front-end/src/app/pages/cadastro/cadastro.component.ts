@@ -1,0 +1,25 @@
+import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { ButtonModule, Button } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
+import { PasswordModule } from 'primeng/password';
+import { LottieComponent, AnimationOptions } from 'ngx-lottie';
+
+
+@Component({
+  selector: 'app-login',
+  imports: [FormsModule, InputTextModule, Button, PasswordModule, LottieComponent],
+  templateUrl: './cadastro.component.html',
+  styleUrl: './cadastro.component.scss',
+})
+export class CadastroComponent {
+  email_input: string | undefined;
+  user_input: string | undefined;
+  senha_input: string | undefined;
+
+  options: AnimationOptions = {
+    path: '/assets/animacao-dinheiro.json',
+    loop: true,
+    autoplay: true
+  };
+}
