@@ -23,29 +23,37 @@
 
             <form>
                 <div class="input-group">
-                    <label for="username">Seu nome de usuário</label>
-                    <input pInputText id="username" placeholder="Insira seu nome de usuário..." />
+                    <label for="nome">Seu nome</label>
+                    <input pInputText id="nome" name="nome" placeholder="Insira seu nome..."
+                        [(ngModel)]="usuario.nome" />
+                </div>
+
+                <div class="input-group">
+                    <label for="sobrenome">Seu sobrenome</label>
+                    <input pInputText id="sobrenome" name="sobrenome" placeholder="Insira seu sobrenome..."
+                        [(ngModel)]="usuario.sobrenome" />
                 </div>
 
                 <div class="input-group">
                     <label for="email">E-mail</label>
-                    <input pInputText id="email" name="email" [(ngModel)]="email_input" placeholder="Insira seu e-mail..." />
+                    <input pInputText id="email" name="email" [(ngModel)]="usuario.email"
+                        placeholder="Insira seu e-mail..." />
                 </div>
 
                 <div class="input-group">
                     <label for="senha">Senha</label>
-                    <p-password id="senha" name="senha" [(ngModel)]="senha_input" [toggleMask]="true" [feedback]="false"
-                        placeholder="••••••" [inputStyle]="{'width':'100%'}" />
+                    <p-password id="senha" name="senha" [(ngModel)]="usuario.senha" [toggleMask]="true"
+                        [feedback]="false" placeholder="••••••" [inputStyle]="{'width':'100%'}" />
 
                     <label for="senha">Confirme sua senha</label>
-                    <p-password id="senha" name="senha" [(ngModel)]="senha_input" [toggleMask]="true" [feedback]="false"
-                        placeholder="••••••" [inputStyle]="{'width':'100%'}" />
+                    <p-password id="senha" name="senha" [(ngModel)]="usuario.senha" [toggleMask]="true"
+                        [feedback]="false" placeholder="••••••" [inputStyle]="{'width':'100%'}" />
 
                 </div>
 
                 <!-- HTML !-->
                 <div class="botao">
-                    <button class="button-33" role="button">Entrar</button>
+                    <button class="button-33" role="button" (click)="salvarUsuario()">Cadastrar</button>
                 </div>
             </form>
         </div>
