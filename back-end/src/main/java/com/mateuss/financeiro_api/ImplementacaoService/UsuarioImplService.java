@@ -9,6 +9,7 @@ import com.mateuss.financeiro_api.model.Usuario;
 import com.mateuss.financeiro_api.repository.UsuarioRepository;
 import com.mateuss.financeiro_api.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -16,6 +17,27 @@ public class UsuarioImplService implements UsuarioService {
 
     @Autowired
     UsuarioRepository usuarioRepository;
+
+    @Autowired
+    PasswordEncoder passwordEncoder;
+
+    public UsuarioDTOResponse autenticarUsuario(String email, String senhaRaw) {
+        // 1. Busca o usuário pelo email
+        Usuario usuario = usuarioRepository.findByEmail(email).orElseThrow(() -> new ResourceNotFoundException("Email ou senha inválidos.")); // Mensagem genérica por segurança;
+
+        // 2. Compara a senha digitada com a senha criptografada do banco
+        if (!passwordEncoder.matches(senhaRaw, usuario.getSenha())) {
+            throw new ResourceNotFoundException("Email ou senha inválidos.");
+        }
+
+        // 3. Se passou, retorna os dados do usuário
+        UsuarioDTOResponse response = new UsuarioDTOResponse();
+        response.setEmail(usuario.getEmail());
+        response.setNome(usuario.getNome());
+        response.setSobrenome(usuario.getSobrenome());
+
+        return response;
+    }
 
     @Override
     public void adicionarUsuario(UsuarioDTORequest usuarioDTORequest) {
@@ -26,7 +48,9 @@ public class UsuarioImplService implements UsuarioService {
         novoUsuario.setEmail(usuarioDTORequest.getEmail());
         novoUsuario.setNome(usuarioDTORequest.getNome());
         novoUsuario.setSobrenome(usuarioDTORequest.getSobrenome());
-        novoUsuario.setSenha(usuarioDTORequest.getSenha());
+
+        String senhaCriptografada = passwordEncoder.encode(usuarioDTORequest.getSenha());
+        novoUsuario.setSenha(senhaCriptografada);
         usuarioRepository.save(novoUsuario);
     }
 

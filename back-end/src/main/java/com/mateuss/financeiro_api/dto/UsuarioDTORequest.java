@@ -13,6 +13,9 @@ public class UsuarioDTORequest {
         this.nome = nome;
     }
 
+    public UsuarioDTORequest() {
+    }
+
     public String getNome() {
         return nome;
     }

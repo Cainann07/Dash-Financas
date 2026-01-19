@@ -1,6 +1,7 @@
 package com.mateuss.financeiro_api.controller;
 
 import com.mateuss.financeiro_api.ImplementacaoService.UsuarioImplService;
+import com.mateuss.financeiro_api.dto.LoginRequestDTO;
 import com.mateuss.financeiro_api.dto.UsuarioDTORequest;
 import com.mateuss.financeiro_api.dto.UsuarioDTOResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,13 +10,24 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/usuarios")
+@CrossOrigin(origins = "*")
 public class UsuarioRestController {
 
     @Autowired
     UsuarioImplService usuarioImplService;
 
+    @PostMapping("/login")
+    public ResponseEntity<UsuarioDTOResponse> login(@RequestBody LoginRequestDTO loginRequest) {
+        UsuarioDTOResponse usuarioLogado = usuarioImplService.autenticarUsuario(loginRequest.email(), loginRequest.senha());
+        return ResponseEntity.ok(usuarioLogado);
+    }
+
     @PostMapping
     public ResponseEntity<Void> criarUsuario(@RequestBody UsuarioDTORequest usuarioDTORequest) {
+        System.out.println("---- DEBUG CHEGADA ----");
+        System.out.println("Dados recebidos: " + usuarioDTORequest.toString());
+        System.out.println("-----------------------");
+
         usuarioImplService.adicionarUsuario(usuarioDTORequest);
         // Retorna código 201 (Created) ou 200 (OK)
         return ResponseEntity.ok().build();
