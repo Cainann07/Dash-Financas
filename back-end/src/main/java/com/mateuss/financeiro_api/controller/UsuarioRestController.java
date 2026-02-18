@@ -24,27 +24,22 @@ public class UsuarioRestController {
 
     @PostMapping
     public ResponseEntity<Void> criarUsuario(@RequestBody UsuarioDTORequest usuarioDTORequest) {
-        System.out.println("---- DEBUG CHEGADA ----");
         System.out.println("Dados recebidos: " + usuarioDTORequest.toString());
-        System.out.println("-----------------------");
 
         usuarioImplService.adicionarUsuario(usuarioDTORequest);
-        // Retorna código 201 (Created) ou 200 (OK)
         return ResponseEntity.ok().build();
     }
 
-    // 2. LER (GET com ID)
     @GetMapping("/{id}")
     public ResponseEntity<UsuarioDTOResponse> lerUsuario(@PathVariable Long id) {
         UsuarioDTOResponse usuario = usuarioImplService.lerUsuario(id);
 
         if (usuario != null) {
-            return ResponseEntity.ok(usuario); // Retorna 200 e o JSON do usuário
+            return ResponseEntity.ok(usuario);
         }
-        return ResponseEntity.notFound().build(); // Retorna 404 se não achar
+        return ResponseEntity.notFound().build();
     }
 
-    // 3. ATUALIZAR (PUT)
     @PutMapping("/{id}")
     public ResponseEntity<UsuarioDTOResponse> atualizarUsuario(@RequestBody UsuarioDTORequest usuarioDTORequest, @PathVariable Long id) {
         UsuarioDTOResponse usuarioAtualizado = usuarioImplService.atualizarUsuario(usuarioDTORequest, id);
@@ -52,7 +47,6 @@ public class UsuarioRestController {
 
     }
 
-    // 4. DELETAR (DELETE)
     @DeleteMapping("/{id}")
     public ResponseEntity<UsuarioDTOResponse> deletarUsuario(@PathVariable Long id) {
         usuarioImplService.deletarUsuario(id);

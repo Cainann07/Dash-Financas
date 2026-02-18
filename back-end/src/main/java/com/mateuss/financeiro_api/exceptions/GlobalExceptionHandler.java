@@ -13,7 +13,6 @@ import java.util.Map;
 public class GlobalExceptionHandler {
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<Object> handleResourceNotFoundException(ResourceNotFoundException exception){
-        // Cria um corpo de erro personalizado em JSON
 
         Map<String, Object> body = new HashMap<>();
         body.put("timestamp", LocalDateTime.now());

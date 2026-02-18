@@ -1,6 +1,7 @@
 package com.mateuss.financeiro_api.ImplementacaoService;
 
 
+import com.mateuss.financeiro_api.dto.LoginRequestDTO;
 import com.mateuss.financeiro_api.dto.UsuarioDTORequest;
 import com.mateuss.financeiro_api.dto.UsuarioDTOResponse;
 import com.mateuss.financeiro_api.exceptions.ResourceAlreadyExistsException;
@@ -21,16 +22,10 @@ public class UsuarioImplService implements UsuarioService {
     @Autowired
     PasswordEncoder passwordEncoder;
 
-    public UsuarioDTOResponse autenticarUsuario(String email, String senhaRaw) {
-        // 1. Busca o usuário pelo email
+    public UsuarioDTOResponse autenticarUsuario(String email, String senha) {
         Usuario usuario = usuarioRepository.findByEmail(email).orElseThrow(() -> new ResourceNotFoundException("Email ou senha inválidos.")); // Mensagem genérica por segurança;
+        if (!passwordEncoder.matches(senha, usuario.getSenha())) throw new ResourceNotFoundException("Email ou senha inválidos.");
 
-        // 2. Compara a senha digitada com a senha criptografada do banco
-        if (!passwordEncoder.matches(senhaRaw, usuario.getSenha())) {
-            throw new ResourceNotFoundException("Email ou senha inválidos.");
-        }
-
-        // 3. Se passou, retorna os dados do usuário
         UsuarioDTOResponse response = new UsuarioDTOResponse();
         response.setEmail(usuario.getEmail());
         response.setNome(usuario.getNome());
