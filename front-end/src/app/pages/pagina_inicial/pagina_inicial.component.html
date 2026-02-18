@@ -26,8 +26,8 @@
 
             <header class="header-section">
                 <div class="header-content">
-                    <h1>Olá, Mateus! 👋</h1>
-                    <p>Resumo financeiro de hoje.</p>
+                    <h1>Olá, {{nomeUsuario}}</h1>
+                    <p>Seu resumo financeiro atual.</p>
                 </div>
             </header>
 
@@ -71,7 +71,7 @@
 
             <section class="kpi-grid">
 
-                <div class="card-kpi border-green">
+                <div class="card-kpi">
                     <div class="kpi-header">
                         <span>Meu orçamento</span>
                         <div class="icon-box bg-green">
@@ -81,7 +81,7 @@
                     <div class="kpi-value">{{ resumo.entrada | currency:'BRL' }}</div>
                 </div>
 
-                <div class="card-kpi border-red">
+                <div class="card-kpi">
                     <div class="kpi-header">
                         <span>Minhas despesas</span>
                         <div class="icon-box bg-red">
@@ -91,7 +91,7 @@
                     <div class="kpi-value">{{ resumo.saida | currency:'BRL' }}</div>
                 </div>
 
-                <div class="card-kpi border-blue">
+                <div class="card-kpi">
                     <div class="kpi-header">
                         <span>Saldo Atual</span>
                         <div class="icon-box bg-blue">

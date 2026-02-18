@@ -398,6 +398,16 @@ function q(e, t2) {
 function i(e, t2 = true) {
   return e instanceof Object && e.constructor === Object && (t2 || Object.keys(e).length !== 0);
 }
+function h2(e, t2) {
+  let n2 = -1;
+  if (t2) {
+    for (let o = 0; o < t2.length; o++) if (t2[o] === e) {
+      n2 = o;
+      break;
+    }
+  }
+  return n2;
+}
 function M(e, t2) {
   let n2 = -1;
   if (s(e)) try {
@@ -605,6 +615,7 @@ export {
   k2,
   q,
   i,
+  h2,
   M,
   m,
   a,
@@ -621,4 +632,4 @@ export {
   oe,
   s2 as s3
 };
-//# sourceMappingURL=chunk-H44XD2L2.js.map
+//# sourceMappingURL=chunk-IFLDHR7B.js.map

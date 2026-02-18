@@ -131,7 +131,6 @@
 
     }
 
-    /* --- GRID DOS CARDS SUPERIORES (KPIs) --- */
     .kpi-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -142,10 +141,9 @@
     }
 
     .card-kpi {
-        background: white;
         padding: 1.5rem;
         border-radius: 12px;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
         border-left: 4px solid transparent;
     }
 
@@ -188,7 +186,6 @@
 
 
 
-    /* Cores Auxiliares */
     .bg-green {
         background-color: #d1fae5;
         color: #059669;

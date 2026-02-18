@@ -10,7 +10,7 @@ import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-login',
-  imports: [FormsModule, InputTextModule, RouterLink, Button, PasswordModule, LottieComponent, RouterLink],
+  imports: [FormsModule, InputTextModule, RouterLink, Button, PasswordModule, LottieComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
@@ -36,6 +36,7 @@ export class LoginComponent {
     this.usuarioService.fazerLogin(this.dadosLogin).subscribe({
       next: (resposta) => {
         console.log('Login com sucesso!', resposta);
+        localStorage.setItem('nomeUsuario', resposta.nome);
         this.router.navigate(['/pagina_inicial']); 
       },
       error: (erro) => {

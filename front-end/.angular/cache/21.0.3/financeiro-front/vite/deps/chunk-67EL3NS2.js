@@ -1,7 +1,7 @@
 import {
   f,
   k2 as k
-} from "./chunk-H44XD2L2.js";
+} from "./chunk-IFLDHR7B.js";
 import {
   Directive,
   ElementRef,
@@ -163,4 +163,4 @@ export {
   Bind,
   BindModule
 };
-//# sourceMappingURL=chunk-NIRIL4UW.js.map
+//# sourceMappingURL=chunk-67EL3NS2.js.map

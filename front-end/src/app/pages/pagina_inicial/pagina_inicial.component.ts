@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms'; 
+import { FormsModule } from '@angular/forms';
 
 // PrimeNG Imports
 import { ButtonModule } from 'primeng/button';
@@ -10,17 +10,24 @@ import { InputTextModule } from 'primeng/inputtext';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { SelectModule } from 'primeng/select';
 import { SelectButtonModule } from 'primeng/selectbutton';
-import { ProgressBar } from "primeng/progressbar"; 
+import { ProgressBar } from "primeng/progressbar";
 
 @Component({
     selector: 'app-pagina_inicial',
     imports: [
-    CommonModule, FormsModule, SelectModule, ButtonModule,
-    TableModule, DialogModule, InputTextModule, InputNumberModule, SelectButtonModule, ProgressBar],
+        CommonModule, FormsModule, SelectModule, ButtonModule,
+        TableModule, DialogModule, InputTextModule, InputNumberModule, SelectButtonModule, ProgressBar],
     templateUrl: 'pagina_inicial.component.html',
     styleUrl: 'pagina_inicial.component.scss',
 })
-export class PaginaInicialComponent {
+export class PaginaInicialComponent implements OnInit {
+    nomeUsuario: string = '';    
+
+    ngOnInit(): void {
+        this.nomeUsuario = localStorage.getItem('nomeUsuario') || 'Usuário';
+    }
+
+
     resumo = {
         entrada: 5200.00,
         saida: 3100.00,
@@ -156,8 +163,8 @@ export class PaginaInicialComponent {
     }
 
     // Controle dos Modais
-    modalTodasMetasVisivel: boolean = false; 
-    modalMetaVisivel: boolean = false;       
+    modalTodasMetasVisivel: boolean = false;
+    modalMetaVisivel: boolean = false;
 
     metaSelecionada: any = null;
     valorDeposito: number | null = null;
@@ -181,7 +188,7 @@ export class PaginaInicialComponent {
         nome: '',
         alvo: null as number | null,
         inicial: null as number | null,
-        temaSelecionado: null as any 
+        temaSelecionado: null as any
     };
 
     temasDisponiveis = [
@@ -212,7 +219,7 @@ export class PaginaInicialComponent {
 
             // Cria o objeto final
             const novoObjetivo = {
-                id: Date.now(), 
+                id: Date.now(),
                 nome: this.novaMeta.nome,
                 atual: valorInicial,
                 alvo: this.novaMeta.alvo,
@@ -231,9 +238,9 @@ export class PaginaInicialComponent {
     }
 
     // Controle do Modal de Extrato
-  modalExtratoVisivel: boolean = false;
+    modalExtratoVisivel: boolean = false;
 
-  abrirExtratoCompleto() {
-    this.modalExtratoVisivel = true;
-  }
+    abrirExtratoCompleto() {
+        this.modalExtratoVisivel = true;
+    }
 }

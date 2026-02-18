@@ -15,12 +15,18 @@
     background-color: rgb(93, 236, 158);
     color: rgb(255, 255, 255);
     padding: 2rem;
+
+    
+    .texto-lado-visual{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 }
 
 .conteudo-visual h1 {
     font-size: 3rem;
     margin-bottom: 1rem;
-    font-family: 'Inter', sans-serif;  
 }
 
  
@@ -58,7 +64,7 @@
 }
 
 .cabecalho-form {
-    margin-bottom: 2rem;
+    margin-bottom: 0.5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -82,7 +88,6 @@
     color: #555;
 }
 
-/* Ajuste nos inputs do PrimeNG para ocuparem 100% */
 :host ::ng-deep .p-inputtext {
     width: 100%;
 }
@@ -95,7 +100,6 @@
 }
 
 
-/* CSS */
 .button-33 {
   background-color: #c2fbd7;
   border-radius: 100px;

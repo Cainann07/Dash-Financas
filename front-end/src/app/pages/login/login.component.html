@@ -2,8 +2,11 @@
 
     <div class="lado-visual">
         <div class="conteudo-visual">
-            <h1>Dash Finanças</h1>
-            <p>Gerencie seu dinheiro de forma mais inteligente!</p>
+            <div class="texto-lado-visual">
+                <h1>Dash Finanças</h1>
+                <p>Gerencie seu dinheiro de forma mais inteligente!</p>
+
+            </div>
 
             <div class="animacao-container">
                 <ng-lottie [options]="options"></ng-lottie>
@@ -13,9 +16,6 @@
 
     <div class="lado-formulario">
 
-        <header>
-            <p>Não tem uma conta? <a routerLink="/cadastro">Cadastre-se</a></p>
-        </header>
 
         <div class="form-box">
             <div class="cabecalho-form">
@@ -26,19 +26,24 @@
             <form>
                 <div class="input-group">
                     <label for="email">E-mail</label>
-                    <input pInputText id="email" name="email" [(ngModel)]="dadosLogin.email" placeholder="Insira seu e-mail..." />
+                    <input pInputText id="email" name="email" [(ngModel)]="dadosLogin.email"
+                        placeholder="Insira seu e-mail..." />
                 </div>
 
                 <div class="input-group">
                     <label for="senha">Senha</label>
-                    <p-password id="senha" name="senha" [(ngModel)]="dadosLogin.senha" [toggleMask]="true" [feedback]="false"
-                        placeholder="••••••"  [inputStyle]="{'width':'100%'}"> </p-password>
+                    <p-password id="senha" name="senha" [(ngModel)]="dadosLogin.senha" [toggleMask]="true"
+                        [feedback]="false" placeholder="••••••" [inputStyle]="{'width':'100%'}"> </p-password>
                 </div>
 
-                <!-- HTML !-->
-                 <div class="botao">
-                     <button class="button-33" role="button" (click)="fazerLogin()">Entrar</button>
-                 </div>
+                <div class="botao">
+                    <button class="button-33" role="button" (click)="fazerLogin()">Entrar</button>
+                </div>
+
+                <p class="cadastrar">Não tem uma conta?&nbsp;<a routerLink="/cadastro">Cadastre-se</a></p>
+
+
+
             </form>
         </div>
     </div>

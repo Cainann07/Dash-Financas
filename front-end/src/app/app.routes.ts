@@ -9,6 +9,7 @@ export const routes: Routes = [
     // { path: 'meta_detalhes', component: MetaDetalhesComponent },
     { path: 'pagina_inicial', component: PaginaInicialComponent },
     { path: 'cadastro', component: CadastroComponent },
+    { path: 'passos_iniciais', component: PassosIniciaisComponent },
     { path: '', redirectTo: 'login', pathMatch: 'full' }
 
 ];

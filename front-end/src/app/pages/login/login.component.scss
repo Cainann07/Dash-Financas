@@ -15,12 +15,17 @@
     background-color: rgb(93, 236, 158);
     color: rgb(255, 255, 255);
     padding: 2rem;
+
+    .texto-lado-visual{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 }
 
 .conteudo-visual h1 {
     font-size: 3rem;
     margin-bottom: 1rem;
-    font-family: 'Inter', sans-serif;  
 }
 
  
@@ -30,6 +35,12 @@
     }
 }
 
+// form{
+//     display: flex;
+//     flex-direction: column;
+//     align-items: center;
+// }
+
  
 .lado-formulario {
     flex: 1;              
@@ -38,14 +49,19 @@
     flex-direction: column;
     justify-content: center;  
     align-items: center;      
-    position: relative;       
 }
 
-.lado-formulario header {
-    font-size: 0.9rem;
+.lado-formulario .cadastrar {
+    font-size: 0.9rem;  
 }
 
-.lado-formulario header a {
+.cadastrar{
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.lado-formulario .cadastrar a {
     color: #00A868;
     font-weight: bold;
     text-decoration: none;
@@ -65,7 +81,7 @@
 }
 
 .cabecalho-form h2 {
-    font-size: 2rem;
+    font-size: 3rem;
     margin-bottom: 0.5rem;
     color: #333;
 }
