@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ButtonModule, Button } from 'primeng/button';
+import { Button } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { LottieComponent, AnimationOptions } from 'ngx-lottie';
@@ -33,13 +33,10 @@ export class LoginComponent {
   ) { }
 
   fazerLogin() {
-    this.usuarioService.login(this.dadosLogin).subscribe({
+    this.usuarioService.fazerLogin(this.dadosLogin).subscribe({
       next: (resposta) => {
         console.log('Login com sucesso!', resposta);
-        // alert('Bem-vindo, ' + resposta.nome);
-        this.router.navigate(['/pagina_inicial']); // Redireciona para localhost:4200/home
-        // Aqui futuramente salvaremos o token e redirecionaremos para a Home
-        // this.router.navigate(['/dashboard']);
+        this.router.navigate(['/pagina_inicial']); 
       },
       error: (erro) => {
         console.error(erro);
@@ -47,4 +44,6 @@ export class LoginComponent {
       }
     });
   }
+
+
 }

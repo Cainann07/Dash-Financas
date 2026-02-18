@@ -2,6 +2,11 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
+interface DadosLogin{
+  email: string,
+  senha: string
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -10,12 +15,11 @@ export class UsuarioService {
 
   constructor(private http: HttpClient) { }
 
-  cadastrarUsuario(usuario: any): Observable<any> {
+  inserirUsuario(usuario: any): Observable<any> {
     return this.http.post(`${this.apiUrl}`, usuario);
   }
 
-  login(dadosLogin: any): Observable<any> {
-    // Atenção: O endpoint é /usuarios/login se o seu controller tiver @RequestMapping("/usuarios")
+  fazerLogin(dadosLogin: DadosLogin): Observable<any> {
     return this.http.post(`${this.apiUrl}/login`, dadosLogin);
   }
 }
