@@ -1,10 +1,8 @@
 package com.mateuss.financeiro_api.model;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.mateuss.financeiro_api.dto.GastoMensalDTO;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 
 import java.math.BigDecimal;
@@ -15,10 +13,14 @@ import java.time.YearMonth;
 public class GastoMensal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
-    @NotBlank(message = "O nome da conta é obrigatório")
-    private String nome;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "usuario_id", nullable = false)
+    private Usuario usuario;
+
+    @NotBlank(message = "O nome dessa conta é obrigatório")
+    private String nomeGasto;
 
     @NotNull(message = "O valor é obrigatório")
     @Positive(message = "O valor deve ser positivo")
@@ -43,28 +45,30 @@ public class GastoMensal {
         return mesPagamento.equals(mesAtual);
     }
 
-    public GastoMensal(Long id, String nome, BigDecimal valor, int diaVencimento, LocalDate dataUltimoPagamento) {
-        this.id = id;
-        this.nome = nome;
-        this.valor = valor;
-        this.diaVencimento = diaVencimento;
-        this.dataUltimoPagamento = dataUltimoPagamento;
+    public GastoMensal(){}
+
+    public GastoMensal(Usuario usuario, GastoMensalDTO gastoMensalDTO) {
+        this.usuario = usuario;
+        this.nomeGasto = gastoMensalDTO.getNome();
+        this.valor = gastoMensalDTO.getValor();
+        this.diaVencimento = gastoMensalDTO.getDiaVencimento();
+        this.dataUltimoPagamento = gastoMensalDTO.getDataUltimoPagamento();
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getNomeGasto() {
+        return nomeGasto;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setNomeGasto(String nomeGasto) {
+        this.nomeGasto = nomeGasto;
     }
 
     public BigDecimal getValor() {
@@ -91,11 +95,19 @@ public class GastoMensal {
         this.dataUltimoPagamento = dataUltimoPagamento;
     }
 
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
     @Override
     public String toString() {
         return "GastoMensal{" +
                 "id=" + id +
-                ", nome='" + nome + '\'' +
+                ", nome='" + nomeGasto + '\'' +
                 ", valor=" + valor +
                 ", diaVencimento=" + diaVencimento +
                 ", dataUltimoPagamento=" + dataUltimoPagamento +

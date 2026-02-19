@@ -23,7 +23,7 @@ public class UsuarioImplService implements UsuarioService {
     PasswordEncoder passwordEncoder;
 
     public UsuarioDTOResponse autenticarUsuario(String email, String senha) {
-        Usuario usuario = usuarioRepository.findByEmail(email).orElseThrow(() -> new ResourceNotFoundException("Email ou senha inválidos.")); // Mensagem genérica por segurança;
+        Usuario usuario = usuarioRepository.findByEmail(email).orElseThrow(() -> new ResourceNotFoundException("Email ou senha inválidos."));
         if (!passwordEncoder.matches(senha, usuario.getSenha())) throw new ResourceNotFoundException("Email ou senha inválidos.");
 
         UsuarioDTOResponse response = new UsuarioDTOResponse();

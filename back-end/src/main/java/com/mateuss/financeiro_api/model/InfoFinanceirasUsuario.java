@@ -1,9 +1,12 @@
 package com.mateuss.financeiro_api.model;
 
+import jakarta.persistence.JoinColumn;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 
 public class InfoFinanceirasUsuario {
+    @JoinColumn(name = "usuario_id", nullable = false)
     private Usuario usuario;
     private BigDecimal orcamento;
     private BigDecimal despesas;
@@ -47,6 +50,8 @@ public class InfoFinanceirasUsuario {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
+
+
 
     @Override
     public String toString() {

@@ -11,6 +11,10 @@ public class Transacao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "usuario_id", nullable = false)
+    private Usuario usuario;
+
     private String categoria;
     private String descricao;
     private LocalDate data;
@@ -56,6 +60,14 @@ public class Transacao {
 
     public void setValor(BigDecimal valor) {
         this.valor = valor;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     @Override

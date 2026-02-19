@@ -1,21 +1,40 @@
 package com.mateuss.financeiro_api.dto;
 
+import com.mateuss.financeiro_api.model.GastoMensal;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class GastoMensalDTO {
+    private Integer id;
     private String nome;
     private BigDecimal valor;
     private int diaVencimento;
-    private boolean valorVariavel;
     private LocalDate dataUltimoPagamento;
 
-    public GastoMensalDTO(String nome, BigDecimal valor, int diaVencimento, boolean valorVariavel, LocalDate dataUltimoPagamento) {
+    public GastoMensalDTO(Integer id, String nome, BigDecimal valor, int diaVencimento, boolean valorVariavel, LocalDate dataUltimoPagamento) {
+        this.id = id;
         this.nome = nome;
         this.valor = valor;
         this.diaVencimento = diaVencimento;
-        this.valorVariavel = valorVariavel;
         this.dataUltimoPagamento = dataUltimoPagamento;
+    }
+
+    public GastoMensalDTO(GastoMensal gastoMensal) {
+        this.id = gastoMensal.getId();
+        this.nome = gastoMensal.getNomeGasto();
+        this.valor = gastoMensal.getValor();
+        this.diaVencimento = gastoMensal.getDiaVencimento();
+        this.dataUltimoPagamento = getDataUltimoPagamento();
+
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -42,14 +61,6 @@ public class GastoMensalDTO {
         this.diaVencimento = diaVencimento;
     }
 
-    public boolean isValorVariavel() {
-        return valorVariavel;
-    }
-
-    public void setValorVariavel(boolean valorVariavel) {
-        this.valorVariavel = valorVariavel;
-    }
-
     public LocalDate getDataUltimoPagamento() {
         return dataUltimoPagamento;
     }
@@ -64,7 +75,6 @@ public class GastoMensalDTO {
                 "nome='" + nome + '\'' +
                 ", valor=" + valor +
                 ", diaVencimento=" + diaVencimento +
-                ", valorVariavel=" + valorVariavel +
                 ", dataUltimoPagamento=" + dataUltimoPagamento +
                 '}';
     }
