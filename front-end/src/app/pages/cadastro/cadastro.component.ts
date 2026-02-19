@@ -39,7 +39,7 @@ export class CadastroComponent {
             next: (resposta) => {
                 console.log('Sucesso!', resposta);
                 alert('Usuário cadastrado com sucesso!');
-                this.router.navigate(['/login']);
+                this.router.navigate(['/passos_iniciais']);
             },
             error: (erro) => {
                 console.error('Erro:', erro);

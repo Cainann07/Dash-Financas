@@ -3,7 +3,8 @@
         <img class="logo-sidebar" src="assets/wmremove-transformed-removebg-preview - Editado.png" alt="">
         <ul>
 
-            <li><a href="src/app/pages/pagina_inicial/pagina_inicial.component.html"><span class="material-symbols-outlined">
+            <li><a href="src/app/pages/pagina_inicial/pagina_inicial.component.html"><span
+                        class="material-symbols-outlined">
                         home
                     </span>
                     Tela Inicial</a>
@@ -24,8 +25,8 @@
                 <h1>Vamos Começar!</h1>
             </div>
 
-            <div class="card flex justify-center">
-                <p-stepper [value]="1" class="basis-[50rem]" [linear]="true">
+            <div class="w-full flex justify-content-center">
+                <p-stepper [value]="1" [linear]="true" class="meu-stepper">
                     <p-step-list>
                         <p-step [value]="1">Seu orçamento</p-step>
                         <p-step [value]="2">Gastos Mensais</p-step>
@@ -34,25 +35,26 @@
                     <p-step-panels>
                         <p-step-panel [value]="1">
                             <ng-template #content let-activateCallback="activateCallback">
-                                <div class="flex flex-col h-48">
-                                    <div
-                                        class="border-2 border-dashed border-surface-200 dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex-auto flex justify-center items-center font-medium">
-                                        <div class="conteudo-stepper1">
-                                            <p>Insira o seu orçamento mensal:</p>
-                                            <p-inputnumber [(ngModel)]="orcamento_input" inputId="minmax" mode="decimal"
-                                                [min]="0" />
 
-                                        </div>
+                                <div class="flex flex-column align-items-center justify-content-center py-6">
+                                    <div class="conteudo-stepper1 text-center">
+
+                                        <p class="mb-3 text-lg font-medium text-gray-700">Insira o seu orçamento mensal:
+                                        </p>
+
+                                        <p-inputNumber [(ngModel)]="orcamento_input" inputId="minmax" mode="currency"
+                                            currency="BRL" locale="pt-BR" [min]="0" />
 
                                     </div>
                                 </div>
-                                <div class="flex pt-6 justify-end">
+
+                                <div class="flex pt-6 justify-content-end">
                                     <p-button label="Avançar" icon="pi pi-arrow-right" iconPos="right"
                                         (onClick)="activateCallback(2)" [disabled]="!(orcamento_input > 0)" />
                                 </div>
+
                             </ng-template>
                         </p-step-panel>
-
                         <p-step-panel [value]="2">
                             <ng-template #content let-activateCallback="activateCallback">
                                 <div class="flex flex-col h-48">
@@ -68,7 +70,7 @@
                                         </div>
                                     </div> -->
                                     <div
-                                        class="border-2 border-dashed border-surface-200 rounded p-4 flex flex-column align-items-center">
+                                        class=" p-4 flex flex-column align-items-center">
 
                                         <h2>Informe seus gastos mensais</h2>
                                         <p class="mb-4">Adicione suas despesas fixas (Aluguel, Internet, Academia, etc).
@@ -103,8 +105,8 @@
                                                 <ng-template pTemplate="body" let-gasto let-i="rowIndex">
                                                     <tr>
                                                         <td>{{ gasto.nome }}</td>
-                                                        <td class="font-bold text-red-500">
-                                                            - {{ gasto.valor | currency:'BRL' }}
+                                                        <td class="font-bold">
+                                                            {{ gasto.valor | currency:'BRL' }}
                                                         </td>
                                                         <td>
                                                             <p-button icon="pi pi-trash" [text]="true" severity="danger"

@@ -228,3 +228,28 @@
     border: none;
     border-bottom: 1px solid #f9fafb;
 }
+
+.meu-stepper {
+    width: 100%;
+    max-width: 800px; 
+    margin: 0 auto;
+    display: block;
+}
+
+:host ::ng-deep .meu-stepper .p-stepper-nav {
+    justify-content: center;
+    border-bottom: 2px solid #f3f4f6; 
+    padding-bottom: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+:host ::ng-deep .meu-stepper .p-stepper-nav {
+    display: flex;
+    width: 100%;
+}
+
+:host ::ng-deep .meu-stepper .p-step {
+    flex: 1; 
+    display: flex;
+    justify-content: center;
+}
