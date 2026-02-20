@@ -2,6 +2,7 @@ package com.mateuss.financeiro_api.controller;
 
 
 import com.mateuss.financeiro_api.ImplementacaoService.GastoImplService;
+import com.mateuss.financeiro_api.dto.GastoMensalDTOPutRequest;
 import com.mateuss.financeiro_api.dto.GastoMensalDTORequest;
 import com.mateuss.financeiro_api.dto.GastoMensalDTOResponse;
 import org.springframework.http.ResponseEntity;
@@ -37,7 +38,7 @@ public class GastoUsuarioRestController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<GastoMensalDTOResponse> alterarGastoMensal(@RequestBody GastoMensalDTORequest gastoMensalDTO) {
+    public ResponseEntity<GastoMensalDTOResponse> alterarGastoMensal(@RequestBody GastoMensalDTOPutRequest gastoMensalDTO) {
         GastoMensalDTOResponse gastoMensalAlterado = gastoImplService.alterarGastoMensal(gastoMensalDTO);
         return ResponseEntity.ok(gastoMensalAlterado);
 

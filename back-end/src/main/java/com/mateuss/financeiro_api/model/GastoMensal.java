@@ -12,7 +12,7 @@ import java.time.YearMonth;
 @Entity
 public class GastoMensal {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY)

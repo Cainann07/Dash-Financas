@@ -20,9 +20,14 @@ public class WebSecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.csrf(AbstractHttpConfigurer::disable)
+        http
+                .cors(AbstractHttpConfigurer::disable) // Desliga o CORS temporariamente para evitar falsos positivos
+                .csrf(AbstractHttpConfigurer::disable) // Desliga a proteção CSRF
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/usuarios/**", "/usuarios/login" , "/swagger-ui/**", "/v3/api-docs/**").permitAll()
+                        // Vamos colocar as rotas separadas para o Spring não ter desculpa!
+                        .requestMatchers("/usuarios/**").permitAll()
+                        .requestMatchers("/gastos/**", "/gastos", "/gastos/*").permitAll() // 👈 Libera tudo de gastos explicitamente
+                        .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
                         .anyRequest().authenticated()
                 );
 

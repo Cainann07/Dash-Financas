@@ -1,6 +1,6 @@
 package com.mateuss.financeiro_api.ImplementacaoService;
 
-import com.mateuss.financeiro_api.dto.GastoMensalDTO;
+import com.mateuss.financeiro_api.dto.GastoMensalDTOPutRequest;
 import com.mateuss.financeiro_api.dto.GastoMensalDTORequest;
 import com.mateuss.financeiro_api.dto.GastoMensalDTOResponse;
 import com.mateuss.financeiro_api.exceptions.ResourceNotFoundException;
@@ -42,7 +42,7 @@ public class GastoImplService implements GastoMensalService {
     }
 
     @Override
-    public GastoMensalDTOResponse alterarGastoMensal(GastoMensalDTORequest gastoMensalDTO) {
+    public GastoMensalDTOResponse alterarGastoMensal(GastoMensalDTOPutRequest gastoMensalDTO) {
         GastoMensal gastoMensalAlterado = gastoMensalRepository.findById(Math.toIntExact(gastoMensalDTO.getId())).orElseThrow(() -> new ResourceNotFoundException("Esse gasto não existe."));
 
         gastoMensalAlterado.setNomeGasto(gastoMensalDTO.getNome());
@@ -50,8 +50,7 @@ public class GastoImplService implements GastoMensalService {
         gastoMensalAlterado.setDiaVencimento(gastoMensalDTO.getDiaVencimento());
         gastoMensalAlterado.setDataUltimoPagamento(gastoMensalDTO.getDataUltimoPagamento());
 
-        GastoMensalDTOResponse gastoMensalDTOResponse = new GastoMensalDTOResponse(gastoMensalRepository.save(gastoMensalAlterado));
-        return gastoMensalDTOResponse;
+        return new GastoMensalDTOResponse(gastoMensalRepository.save(gastoMensalAlterado));
     }
 
     @Override
