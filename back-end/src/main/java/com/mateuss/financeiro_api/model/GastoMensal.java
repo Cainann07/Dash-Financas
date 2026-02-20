@@ -1,7 +1,7 @@
 package com.mateuss.financeiro_api.model;
 
 
-import com.mateuss.financeiro_api.dto.GastoMensalDTO;
+import com.mateuss.financeiro_api.dto.GastoMensalDTORequest;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 
@@ -12,7 +12,7 @@ import java.time.YearMonth;
 @Entity
 public class GastoMensal {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -47,7 +47,7 @@ public class GastoMensal {
 
     public GastoMensal(){}
 
-    public GastoMensal(Usuario usuario, GastoMensalDTO gastoMensalDTO) {
+    public GastoMensal(Usuario usuario, GastoMensalDTORequest gastoMensalDTO) {
         this.usuario = usuario;
         this.nomeGasto = gastoMensalDTO.getNome();
         this.valor = gastoMensalDTO.getValor();

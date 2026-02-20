@@ -5,37 +5,23 @@ import com.mateuss.financeiro_api.model.GastoMensal;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class GastoMensalDTO {
-    private Integer id;
+public class GastoMensalDTOResponse {
+
     private String nome;
     private BigDecimal valor;
     private int diaVencimento;
     private LocalDate dataUltimoPagamento;
 
-    public GastoMensalDTO(Integer id, String nome, BigDecimal valor, int diaVencimento, boolean valorVariavel, LocalDate dataUltimoPagamento) {
-        this.id = id;
-        this.nome = nome;
-        this.valor = valor;
-        this.diaVencimento = diaVencimento;
-        this.dataUltimoPagamento = dataUltimoPagamento;
-    }
-
-    public GastoMensalDTO(GastoMensal gastoMensal) {
-        this.id = gastoMensal.getId();
+    public GastoMensalDTOResponse(GastoMensal gastoMensal) {
         this.nome = gastoMensal.getNomeGasto();
         this.valor = gastoMensal.getValor();
         this.diaVencimento = gastoMensal.getDiaVencimento();
-        this.dataUltimoPagamento = getDataUltimoPagamento();
-
+        this.dataUltimoPagamento = gastoMensal.getDataUltimoPagamento();
     }
 
-    public Integer getId() {
-        return id;
+    public GastoMensalDTOResponse() {
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getNome() {
         return nome;
@@ -69,13 +55,4 @@ public class GastoMensalDTO {
         this.dataUltimoPagamento = dataUltimoPagamento;
     }
 
-    @Override
-    public String toString() {
-        return "GastoMensalDTORequest{" +
-                "nome='" + nome + '\'' +
-                ", valor=" + valor +
-                ", diaVencimento=" + diaVencimento +
-                ", dataUltimoPagamento=" + dataUltimoPagamento +
-                '}';
-    }
 }

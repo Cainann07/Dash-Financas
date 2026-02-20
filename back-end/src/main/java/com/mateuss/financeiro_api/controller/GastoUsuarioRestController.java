@@ -2,7 +2,8 @@ package com.mateuss.financeiro_api.controller;
 
 
 import com.mateuss.financeiro_api.ImplementacaoService.GastoImplService;
-import com.mateuss.financeiro_api.dto.GastoMensalDTO;
+import com.mateuss.financeiro_api.dto.GastoMensalDTORequest;
+import com.mateuss.financeiro_api.dto.GastoMensalDTOResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +19,7 @@ public class GastoUsuarioRestController {
     }
 
     @PostMapping("/{idUsuario}")
-    public ResponseEntity<Void> criarGasto(@PathVariable Long idUsuario, @RequestBody GastoMensalDTO gastoMensalDTO) {
+    public ResponseEntity<Void> criarGasto(@PathVariable Long idUsuario, @RequestBody GastoMensalDTORequest gastoMensalDTO) {
         System.out.println("Dados recebidos: " + gastoMensalDTO.toString());
 
         gastoImplService.adicionarGastoMensal(idUsuario, gastoMensalDTO);
@@ -26,8 +27,8 @@ public class GastoUsuarioRestController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<GastoMensalDTO> lerGastoMensal(@PathVariable Integer id) {
-        GastoMensalDTO gastoMensalDTO = gastoImplService.lerGastoMensal(id);
+    public ResponseEntity<GastoMensalDTOResponse> lerGastoMensal(@PathVariable Integer id) {
+        GastoMensalDTOResponse gastoMensalDTO = gastoImplService.lerGastoMensal(id);
 
         if (gastoMensalDTO != null) {
             return ResponseEntity.ok(gastoMensalDTO);
@@ -36,8 +37,8 @@ public class GastoUsuarioRestController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<GastoMensalDTO> alterarGastoMensal(@RequestBody GastoMensalDTO gastoMensalDTO) {
-        GastoMensalDTO gastoMensalAlterado = gastoImplService.alterarGastoMensal(gastoMensalDTO);
+    public ResponseEntity<GastoMensalDTOResponse> alterarGastoMensal(@RequestBody GastoMensalDTORequest gastoMensalDTO) {
+        GastoMensalDTOResponse gastoMensalAlterado = gastoImplService.alterarGastoMensal(gastoMensalDTO);
         return ResponseEntity.ok(gastoMensalAlterado);
 
     }

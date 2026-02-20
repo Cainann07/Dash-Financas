@@ -1,6 +1,8 @@
 package com.mateuss.financeiro_api.ImplementacaoService;
 
 import com.mateuss.financeiro_api.dto.GastoMensalDTO;
+import com.mateuss.financeiro_api.dto.GastoMensalDTORequest;
+import com.mateuss.financeiro_api.dto.GastoMensalDTOResponse;
 import com.mateuss.financeiro_api.exceptions.ResourceNotFoundException;
 import com.mateuss.financeiro_api.model.GastoMensal;
 import com.mateuss.financeiro_api.model.Usuario;
@@ -24,7 +26,7 @@ public class GastoImplService implements GastoMensalService {
     }
 
 
-    public void adicionarGastoMensal(Long idUsuario, GastoMensalDTO gastoMensalDTO) {
+    public void adicionarGastoMensal(Long idUsuario, GastoMensalDTORequest gastoMensalDTO) {
         Usuario usuarioLogado = usuarioRepository.findById(idUsuario).orElseThrow(() -> new ResourceNotFoundException("Cliente não existente."));
 
         GastoMensal novoGastoMensal = new GastoMensal(usuarioLogado, gastoMensalDTO);
@@ -32,15 +34,15 @@ public class GastoImplService implements GastoMensalService {
     }
 
     @Override
-    public GastoMensalDTO lerGastoMensal(Integer idGasto) {
+    public GastoMensalDTOResponse lerGastoMensal(Integer idGasto) {
      GastoMensal gastoMensal = gastoMensalRepository.findById(idGasto).orElseThrow(()->new ResourceNotFoundException("Esse gasto não existe."));
-     GastoMensalDTO gastoMensalDTO = new GastoMensalDTO(gastoMensal);
+        GastoMensalDTOResponse gastoMensalDTO = new GastoMensalDTOResponse(gastoMensal);
 
      return gastoMensalDTO;
     }
 
     @Override
-    public GastoMensalDTO alterarGastoMensal(GastoMensalDTO gastoMensalDTO) {
+    public GastoMensalDTOResponse alterarGastoMensal(GastoMensalDTORequest gastoMensalDTO) {
         GastoMensal gastoMensalAlterado = gastoMensalRepository.findById(Math.toIntExact(gastoMensalDTO.getId())).orElseThrow(() -> new ResourceNotFoundException("Esse gasto não existe."));
 
         gastoMensalAlterado.setNomeGasto(gastoMensalDTO.getNome());
@@ -48,14 +50,14 @@ public class GastoImplService implements GastoMensalService {
         gastoMensalAlterado.setDiaVencimento(gastoMensalDTO.getDiaVencimento());
         gastoMensalAlterado.setDataUltimoPagamento(gastoMensalDTO.getDataUltimoPagamento());
 
-        gastoMensalRepository.save(gastoMensalAlterado);
-        return gastoMensalDTO;
+        GastoMensalDTOResponse gastoMensalDTOResponse = new GastoMensalDTOResponse(gastoMensalRepository.save(gastoMensalAlterado));
+        return gastoMensalDTOResponse;
     }
 
     @Override
-    public List<GastoMensalDTO> listarGastoMensal(Long idUsuario) {
+    public List<GastoMensalDTOResponse> listarGastoMensal(Long idUsuario) {
         List<GastoMensal> gastos = gastoMensalRepository.findAllByUsuarioId(idUsuario);
-        return gastos.stream().map(GastoMensalDTO::new).toList();
+        return gastos.stream().map(GastoMensalDTOResponse::new).toList();
     }
 
     @Override
